@@ -1,0 +1,255 @@
+[
+  {
+    "id": "engine",
+    "name": "Engine & Performance",
+    "slug": "engine",
+    "path": "engine",
+    "parentId": null,
+    "children": [
+      {
+        "id": "engine-oil",
+        "name": "Engine Oil & Filters",
+        "slug": "engine-oil",
+        "path": "engine/engine-oil",
+        "parentId": "engine"
+      },
+      {
+        "id": "air-intake",
+        "name": "Air Intake System",
+        "slug": "air-intake",
+        "path": "engine/air-intake",
+        "parentId": "engine"
+      },
+      {
+        "id": "fuel-system",
+        "name": "Fuel System",
+        "slug": "fuel-system",
+        "path": "engine/fuel-system",
+        "parentId": "engine"
+      },
+      {
+        "id": "cooling-system",
+        "name": "Cooling System",
+        "slug": "cooling-system",
+        "path": "engine/cooling-system",
+        "parentId": "engine"
+      },
+      {
+        "id": "exhaust",
+        "name": "Exhaust System",
+        "slug": "exhaust",
+        "path": "engine/exhaust",
+        "parentId": "engine"
+      }
+    ]
+  },
+  {
+    "id": "transmission",
+    "name": "Transmission & Drivetrain",
+    "slug": "transmission",
+    "path": "transmission",
+    "parentId": null,
+    "children": [
+      {
+        "id": "transmission-oil",
+        "name": "Transmission Oil & Filters",
+        "slug": "transmission-oil",
+        "path": "transmission/transmission-oil",
+        "parentId": "transmission"
+      },
+      {
+        "id": "clutch",
+        "name": "Clutch System",
+        "slug": "clutch",
+        "path": "transmission/clutch",
+        "parentId": "transmission"
+      },
+      {
+        "id": "driveshaft",
+        "name": "Driveshaft & CV Joints",
+        "slug": "driveshaft",
+        "path": "transmission/driveshaft",
+        "parentId": "transmission"
+      }
+    ]
+  },
+  {
+    "id": "brakes",
+    "name": "Brakes & Safety",
+    "slug": "brakes",
+    "path": "brakes",
+    "parentId": null,
+    "children": [
+      {
+        "id": "brake-pads",
+        "name": "Brake Pads",
+        "slug": "brake-pads",
+        "path": "brakes/brake-pads",
+        "parentId": "brakes"
+      },
+      {
+        "id": "brake-discs",
+        "name": "Brake Discs",
+        "slug": "brake-discs",
+        "path": "brakes/brake-discs",
+        "parentId": "brakes"
+      },
+      {
+        "id": "brake-fluid",
+        "name": "Brake Fluid",
+        "slug": "brake-fluid",
+        "path": "brakes/brake-fluid",
+        "parentId": "brakes"
+      },
+      {
+        "id": "abs",
+        "name": "ABS System",
+        "slug": "abs",
+        "path": "brakes/abs",
+        "parentId": "brakes"
+      }
+    ]
+  },
+  {
+    "id": "suspension",
+    "name": "Suspension & Steering",
+    "slug": "suspension",
+    "path": "suspension",
+    "parentId": null,
+    "children": [
+      {
+        "id": "shock-absorbers",
+        "name": "Shock Absorbers",
+        "slug": "shock-absorbers",
+        "path": "suspension/shock-absorbers",
+        "parentId": "suspension"
+      },
+      {
+        "id": "springs",
+        "name": "Springs",
+        "slug": "springs",
+        "path": "suspension/springs",
+        "parentId": "suspension"
+      },
+      {
+        "id": "steering",
+        "name": "Steering System",
+        "slug": "steering",
+        "path": "suspension/steering",
+        "parentId": "suspension"
+      },
+      {
+        "id": "wheel-bearings",
+        "name": "Wheel Bearings",
+        "slug": "wheel-bearings",
+        "path": "suspension/wheel-bearings",
+        "parentId": "suspension"
+      }
+    ]
+  },
+  {
+    "id": "electrical",
+    "name": "Electrical & Lighting",
+    "slug": "electrical",
+    "path": "electrical",
+    "parentId": null,
+    "children": [
+      {
+        "id": "battery",
+        "name": "Battery & Charging",
+        "slug": "battery",
+        "path": "electrical/battery",
+        "parentId": "electrical"
+      },
+      {
+        "id": "lights",
+        "name": "Lights & Bulbs",
+        "slug": "lights",
+        "path": "electrical/lights",
+        "parentId": "electrical"
+      },
+      {
+        "id": "ignition",
+        "name": "Ignition System",
+        "slug": "ignition",
+        "path": "electrical/ignition",
+        "parentId": "electrical"
+      },
+      {
+        "id": "sensors",
+        "name": "Sensors",
+        "slug": "sensors",
+        "path": "electrical/sensors",
+        "parentId": "electrical"
+      }
+    ]
+  },
+  {
+    "id": "body",
+    "name": "Body & Interior",
+    "slug": "body",
+    "path": "body",
+    "parentId": null,
+    "children": [
+      {
+        "id": "doors",
+        "name": "Doors & Windows",
+        "slug": "doors",
+        "path": "body/doors",
+        "parentId": "body"
+      },
+      {
+        "id": "mirrors",
+        "name": "Mirrors",
+        "slug": "mirrors",
+        "path": "body/mirrors",
+        "parentId": "body"
+      },
+      {
+        "id": "seats",
+        "name": "Seats & Interior",
+        "slug": "seats",
+        "path": "body/seats",
+        "parentId": "body"
+      },
+      {
+        "id": "trim",
+        "name": "Trim & Molding",
+        "slug": "trim",
+        "path": "body/trim",
+        "parentId": "body"
+      }
+    ]
+  },
+  {
+    "id": "climate",
+    "name": "Climate Control",
+    "slug": "climate",
+    "path": "climate",
+    "parentId": null,
+    "children": [
+      {
+        "id": "ac",
+        "name": "Air Conditioning",
+        "slug": "ac",
+        "path": "climate/ac",
+        "parentId": "climate"
+      },
+      {
+        "id": "heating",
+        "name": "Heating System",
+        "slug": "heating",
+        "path": "climate/heating",
+        "parentId": "climate"
+      },
+      {
+        "id": "filters",
+        "name": "Cabin Filters",
+        "slug": "filters",
+        "path": "climate/filters",
+        "parentId": "climate"
+      }
+    ]
+  }
+]
+

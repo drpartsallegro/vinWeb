@@ -1,0 +1,166 @@
+/* Design System Tokens */
+:root {
+  /* Colors */
+  --bg: #0B0D10;
+  --surface: #11161C;
+  --surface-2: #151C24;
+  --surface-3: #0E1217;
+  
+  --text: #E6EDF3;
+  --muted: #9AA4B2;
+  
+  --primary: #3B82F6;
+  --primary-2: #2563EB;
+  --accent: #8B5CF6;
+  
+  --success: #10B981;
+  --warn: #F59E0B;
+  --danger: #EF4444;
+  --chip: #1C2630;
+  
+  --border: #22303B;
+  --ring: #3B82F6;
+  
+  /* Spacing Scale (4px base) */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  
+  /* Border Radius */
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  
+  /* Shadows */
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-float: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  
+  /* Typography */
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* Container */
+  --container-max: 1160px;
+  --container-padding: 1rem;
+  
+  /* Header */
+  --header-height: 64px;
+}
+
+/* Light theme overrides */
+[class="light"] {
+  --bg: #FFFFFF;
+  --surface: #F8FAFC;
+  --surface-2: #F1F5F9;
+  --surface-3: #E2E8F0;
+  
+  --text: #0F172A;
+  --muted: #64748B;
+  
+  --border: #E2E8F0;
+  --chip: #F1F5F9;
+}
+
+/* Glass effect improvements for light mode */
+.glass-light {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.glass-dark {
+  background: rgba(17, 22, 28, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(34, 48, 59, 0.3);
+}
+
+/* Utility classes */
+.hairline {
+  border-bottom: 1px solid var(--border);
+}
+
+.glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ring-focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.ring-focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Focus visible polyfill */
+.js-focus-visible :focus:not(.js-focus-visible) {
+  outline: none;
+}
+
+.js-focus-visible .js-focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Additional utility classes */
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+.shadow-float {
+  box-shadow: var(--shadow-float);
+}
+
+.shadow-subtle {
+  box-shadow: var(--shadow-subtle);
+}
+
+/* Frosted glass effect */
+.frosted {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Gradient hairline */
+.gradient-hairline {
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  height: 1px;
+  width: 100%;
+}
+
+/* Focus ring utilities */
+.focus-ring {
+  @apply focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none;
+}
+
+.focus-ring-visible {
+  @apply ring-2 ring-ring ring-offset-2 outline-none;
+}
