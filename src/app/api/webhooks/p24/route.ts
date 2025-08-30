@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Update order status to PAID
+            // Aktualizuj status zamówienia na PAID
     const updatedOrder = await prisma.orderRequest.update({
       where: { id: payment.orderRequestId },
       data: { status: 'PAID' },

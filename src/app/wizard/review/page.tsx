@@ -17,7 +17,7 @@ import { useCart } from '@/contexts/CartContext'
 const steps = [
   {
     id: 'identify',
-    title: 'Vehicle Information',
+            title: 'Informacje o Pojazdzie',
     description: 'Enter your VIN and email',
     status: 'completed' as const,
   },
@@ -204,7 +204,7 @@ export default function ReviewPage() {
                           <p className="font-mono text-sm text-text">{wizardData?.email}</p>
                         </div>
                         <p className="text-xs text-muted">
-                          Click the link in your email to view order status, pricing, and updates.
+                          Kliknij link w emailu, aby zobaczyć status zamówienia, ceny i aktualizacje.
                         </p>
                       </>
                     )}
@@ -224,7 +224,7 @@ export default function ReviewPage() {
               <Link href="/" className="block">
                 <Button variant="outline" className="w-full">
                   <ArrowLeftIcon className="mr-2 h-4 w-4" />
-                  Back to Home
+                  Powrót do Strony Głównej
                 </Button>
               </Link>
             </motion.div>
@@ -276,7 +276,7 @@ export default function ReviewPage() {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div>
-                    <CardTitle>Vehicle Information</CardTitle>
+                    <CardTitle>Informacje o Pojazdzie</CardTitle>
                     <CardDescription>Your vehicle details and contact information</CardDescription>
                   </div>
                   <Link href="/wizard/identify">
@@ -336,19 +336,19 @@ export default function ReviewPage() {
                           </div>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                             <div>
-                              <span className="text-muted">Quantity:</span>
-                              <span className="ml-2 text-text font-medium">{item.quantity}</span>
+                                                      <span className="text-muted">Ilość:</span>
+                        <span className="ml-2 text-text font-medium">{item.quantity}</span>
                             </div>
                             {item.note && (
                               <div>
-                                <span className="text-muted">Note:</span>
+                                <span className="text-muted">Notatka:</span>
                                 <span className="ml-2 text-text">{item.note}</span>
                               </div>
                             )}
                           </div>
                           {item.photoFile && (
                             <div className="mt-3">
-                              <span className="text-muted text-sm">Photo attached</span>
+                              <span className="text-muted text-sm">Zdjęcie załączone</span>
                             </div>
                           )}
                         </div>
@@ -363,25 +363,25 @@ export default function ReviewPage() {
             <motion.div variants={motionVariants.quickIn}>
               <Card className="border-warn/20 bg-warn/5">
                 <CardHeader>
-                  <CardTitle className="text-warn">Important Information</CardTitle>
+                  <CardTitle className="text-warn">Ważne Informacje</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3 text-sm">
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-warn rounded-full mt-2 flex-shrink-0"></div>
                     <p className="text-muted">
-                      By submitting this order, you agree to our terms of service and privacy policy.
+                      Składając to zamówienie, zgadzasz się z naszymi warunkami świadczenia usług i polityką prywatności.
                     </p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-warn rounded-full mt-2 flex-shrink-0"></div>
                     <p className="text-muted">
-                      You'll receive a confirmation email with your order details and next steps.
+                      Otrzymasz email potwierdzający z szczegółami zamówienia i kolejnymi krokami.
                     </p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-warn rounded-full mt-2 flex-shrink-0"></div>
                     <p className="text-muted">
-                      Our team will review your request and provide pricing within 24-48 hours.
+                      Nasz zespół przejrzy Twoje żądanie i przedstawi wycenę w ciągu 24-48 godzin.
                     </p>
                   </div>
                 </CardContent>
@@ -394,7 +394,7 @@ export default function ReviewPage() {
                 <Link href="/wizard/parts">
                   <Button variant="outline" size="lg" className="min-w-[140px] border-2 border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-200">
                     <ArrowLeftIcon className="mr-2 h-4 w-4" />
-                    Back to Parts Selection
+                    Powrót do Wyboru Części
                   </Button>
                 </Link>
                 
@@ -405,7 +405,7 @@ export default function ReviewPage() {
                   size="lg"
                   className="min-w-[160px] bg-success hover:bg-success/90 text-white shadow-lg hover:shadow-xl transition-all duration-200"
                 >
-                  {isSubmitting ? 'Submitting...' : 'Submit Order Request'}
+                  {isSubmitting ? 'Przesyłanie...' : 'Złóż Zamówienie'}
                 </Button>
               </div>
             </motion.div>

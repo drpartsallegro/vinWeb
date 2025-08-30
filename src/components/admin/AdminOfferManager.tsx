@@ -231,7 +231,7 @@ export function AdminOfferManager({ orderItem, onOfferAdded }: AdminOfferManager
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
-          <span>Parts Requested ({orderItem.quantity})</span>
+                          <span>Części Zamówione ({orderItem.quantity})</span>
           {canAddMore && (
             <div className="flex items-center gap-2">
               {!isAddingOffer && (
@@ -262,10 +262,10 @@ export function AdminOfferManager({ orderItem, onOfferAdded }: AdminOfferManager
           <div className="p-3 bg-chip rounded-lg">
             <h4 className="font-medium text-text">{orderItem.category.name}</h4>
             <p className="text-sm text-text/70">{orderItem.categoryPath}</p>
-            <p className="text-sm text-text/70">Quantity: {orderItem.quantity}</p>
-            {orderItem.note && (
-              <p className="text-sm text-text/70 mt-1">Note: {orderItem.note}</p>
-            )}
+                            <p className="text-sm text-text/70">Ilość: {orderItem.quantity}</p>
+                {orderItem.note && (
+                  <p className="text-sm text-text/70 mt-1">Notatka: {orderItem.note}</p>
+                )}
           </div>
 
           {/* Existing Offers */}

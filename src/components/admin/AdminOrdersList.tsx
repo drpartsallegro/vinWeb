@@ -94,13 +94,13 @@ export function AdminOrdersList({ data }: AdminOrdersListProps) {
       })
 
       if (!response.ok) {
-        throw new Error('Failed to update order status')
+        throw new Error('Nie udało się zaktualizować statusu zamówienia')
       }
 
       addToast({
         type: 'success',
         title: 'Status Updated',
-        description: `Order status changed to ${newStatus.toLowerCase()}`,
+        description: `Status zamówienia zmieniony na ${newStatus.toLowerCase()}`,
       })
 
       router.refresh()
@@ -109,7 +109,7 @@ export function AdminOrdersList({ data }: AdminOrdersListProps) {
       addToast({
         type: 'error',
         title: 'Update Failed',
-        description: 'Could not update order status',
+        description: 'Nie udało się zaktualizować statusu zamówienia',
       })
     } finally {
       setActionLoading(null)

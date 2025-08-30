@@ -75,8 +75,8 @@ export function generateOrderConfirmationEmail(data: OrderConfirmationData): str
             <h3>Order Details</h3>
             <p><strong>Order Number:</strong> <span class="highlight">#${data.orderShortCode}</span></p>
             <p><strong>Vehicle VIN:</strong> <span class="vin">${data.vin}</span></p>
-            <p><strong>Parts Requested:</strong> ${data.itemCount} item${data.itemCount !== 1 ? 's' : ''}</p>
-            <p><strong>Status:</strong> <span class="status-chip status-pending">⏳ Pending Review</span></p>
+            <p><strong>Części Zamówione:</strong> ${data.itemCount} ${data.itemCount !== 1 ? 'części' : 'część'}</p>
+                          <p><strong>Status:</strong> <span class="status-chip status-pending">⏳ Oczekuje na Przegląd</span></p>
           </div>
           
           <h3>What happens next?</h3>

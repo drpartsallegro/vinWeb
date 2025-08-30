@@ -134,8 +134,8 @@ export function IdentifyNavigation({ onContinue, isDisabled, isLoading }: {
   return (
     <WizardNavigation
       backHref="/"
-      backLabel="Back to Home"
-      continueLabel="Continue to Parts Selection"
+              backLabel="Powrót do Strony Głównej"
+              continueLabel="Kontynuuj do Wyboru Części"
       onContinue={onContinue}
       isContinueDisabled={isDisabled}
       isLoading={isLoading}
@@ -152,8 +152,8 @@ export function PartsNavigation({ onContinue, isDisabled, isLoading }: {
   return (
     <WizardNavigation
       backHref="/wizard/identify"
-      backLabel="Back to Vehicle Info"
-      continueLabel="Continue to Review"
+              backLabel="Powrót do Informacji o Pojazdzie"
+        continueLabel="Kontynuuj do Podsumowania"
       onContinue={onContinue}
       isContinueDisabled={isDisabled}
       isLoading={isLoading}
@@ -170,8 +170,8 @@ export function ReviewNavigation({ onContinue, isDisabled, isLoading }: {
   return (
     <WizardNavigation
       backHref="/wizard/parts"
-      backLabel="Back to Parts Selection"
-      continueLabel="Submit Order Request"
+              backLabel="Powrót do Wyboru Części"
+        continueLabel="Złóż Zamówienie"
       onContinue={onContinue}
       isContinueDisabled={isDisabled}
       isLoading={isLoading}
@@ -190,7 +190,7 @@ export function CheckoutNavigation({ onContinue, isDisabled, isLoading, total, i
   return (
     <WizardNavigation
       backHref="#"
-      backLabel="Back to Order"
+              backLabel="Powrót do Zamówienia"
       continueLabel={`Proceed to Payment - ${total} (${itemCount} items)`}
       onContinue={onContinue}
       isContinueDisabled={isDisabled}

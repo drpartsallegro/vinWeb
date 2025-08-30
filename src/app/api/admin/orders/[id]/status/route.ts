@@ -92,8 +92,8 @@ export async function PATCH(
         userId: currentOrder.userId,
         audience: currentOrder.userId ? 'USER' : 'GUEST',
         type: status === 'REMOVED' ? 'ORDER_REMOVED' : 'STATUS_CHANGED',
-        title: `Order status updated`,
-        body: `Your order status has been changed to ${status.toLowerCase()}`,
+        title: `Status zamówienia zaktualizowany`,
+        body: `Status Twojego zamówienia został zmieniony na ${status.toLowerCase()}`,
       },
     })
 
@@ -116,7 +116,7 @@ export async function PATCH(
       order: updatedOrder,
     })
   } catch (error) {
-    console.error('Error updating order status:', error)
+          console.error('Błąd podczas aktualizacji statusu zamówienia:', error)
 
     if (error instanceof z.ZodError) {
       return NextResponse.json(

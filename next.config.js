@@ -29,6 +29,10 @@ const nextConfig = {
         source: '/robots.txt',
         destination: '/api/robots',
       },
+      {
+        source: '/uploads/:path*',
+        destination: '/api/uploads/:path*',
+      },
     ]
   },
 }

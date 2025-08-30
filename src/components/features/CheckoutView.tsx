@@ -183,7 +183,7 @@ export function CheckoutView({ order, shopConfig, isGuest }: CheckoutViewProps) 
     } catch (error) {
       addToast({
         title: 'Checkout Failed',
-        description: 'There was an error processing your order. Please try again.',
+        description: 'Wystąpił błąd podczas przetwarzania Twojego zamówienia. Spróbuj ponownie.',
         type: 'error'
       })
     } finally {

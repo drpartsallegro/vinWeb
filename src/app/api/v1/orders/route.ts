@@ -94,17 +94,41 @@ export async function POST(request: NextRequest) {
             // Handle photo upload
             if (photo && photo.size > 0) {
               try {
-                // For now, skip photo processing to avoid complexity
-                // We can add this back later
+                // Upload photo to server
+                const uploadFormData = new FormData()
+                uploadFormData.append('file', photo)
+                
+                const uploadResponse = await fetch('/api/v1/upload', {
+                  method: 'POST',
+                  body: uploadFormData,
+                })
+                
+                if (uploadResponse.ok) {
+                  const uploadResult = await uploadResponse.json()
+                  photoData = {
+                    photoUrl: uploadResult.url,
+                    photoWidth: null, // Could be extracted from image metadata
+                    photoHeight: null, // Could be extracted from image metadata
+                    photoMime: uploadResult.type,
+                  }
+                } else {
+                  console.error('Błąd podczas przesyłania zdjęcia:', await uploadResponse.text())
+                  photoData = {
+                    photoUrl: null,
+                    photoWidth: null,
+                    photoHeight: null,
+                    photoMime: null,
+                  }
+                }
+              } catch (error) {
+                console.error('Błąd podczas przetwarzania obrazu:', error)
+                // Continue without photo if processing fails
                 photoData = {
                   photoUrl: null,
                   photoWidth: null,
                   photoHeight: null,
                   photoMime: null,
                 }
-              } catch (error) {
-                console.error('Error processing image:', error)
-                // Continue without photo if processing fails
               }
             }
             

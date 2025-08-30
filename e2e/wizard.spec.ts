@@ -46,7 +46,7 @@ test.describe('Order Wizard Flow', () => {
     // Verify order details
     await expect(page.getByText('WVWZZZ1JZXW386752')).toBeVisible()
     await expect(page.getByText('test@example.com')).toBeVisible()
-    await expect(page.getByText('2 parts requested')).toBeVisible()
+    await expect(page.getByText('2 części zamówione')).toBeVisible()
 
     // Submit order
     await page.getByRole('button', { name: 'Submit Order Request' }).click()

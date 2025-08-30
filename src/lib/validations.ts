@@ -69,9 +69,9 @@ function validateNIPChecksum(nip: string): boolean {
 
 // Order item validation
 export const orderItemSchema = z.object({
-  categoryId: z.string().min(1, 'Category is required').max(120),
-  quantity: z.number().int().min(1, 'Quantity must be at least 1').max(999, 'Quantity too high'),
-  note: z.string().max(200, 'Note must not exceed 200 characters').optional(),
+      categoryId: z.string().min(1, 'Kategoria jest wymagana').max(120),
+      quantity: z.number().int().min(1, 'Ilość musi wynosić co najmniej 1').max(999, 'Ilość za duża'),
+    note: z.string().max(200, 'Notatka nie może przekraczać 200 znaków').optional(),
   photoUploadId: z.string().optional(),
 })
 

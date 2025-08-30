@@ -303,10 +303,10 @@ export default function AnalyticsPage() {
         </Card>
       </div>
 
-      {/* Order Status Breakdown */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Order Status Breakdown</CardTitle>
+                    {/* Order Status Breakdown */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Podział Statusów Zamówień</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

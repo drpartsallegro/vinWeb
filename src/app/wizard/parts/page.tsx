@@ -22,11 +22,11 @@ import categoriesData from '../../../../data/categories.json'
 
 const partsSchema = z.object({
   items: z.array(z.object({
-    categoryId: z.string().min(1, 'Please select a category'),
-    quantity: z.number().min(1, 'Quantity must be at least 1').max(999, 'Quantity too high'),
-    note: z.string().max(200, 'Note must not exceed 200 characters').optional(),
+          categoryId: z.string().min(1, 'Proszę wybrać kategorię'),
+    quantity: z.number().min(1, 'Ilość musi wynosić co najmniej 1').max(999, 'Ilość za duża'),
+    note: z.string().max(200, 'Notatka nie może przekraczać 200 znaków').optional(),
     photoFile: z.any().optional(),
-  })).min(1, 'At least one item is required'),
+      })).min(1, 'Wymagane jest co najmniej jedno zamówienie'),
 })
 
 type PartsForm = z.infer<typeof partsSchema>
@@ -176,10 +176,10 @@ export default function PartsPage() {
             className="text-center mb-8"
           >
             <h1 className="text-4xl font-bold text-text mb-4">
-              Select Categories
+              Wybierz Kategorie Części
             </h1>
             <p className="text-lg text-muted max-w-xl mx-auto">
-              Choose the parts you need for your vehicle. You can add photos to help us identify the exact parts.
+              Wybierz części, których potrzebujesz dla swojego pojazdu. Możesz dodać zdjęcia, aby pomóc nam zidentyfikować dokładne części.
             </p>
           </motion.div>
 
@@ -195,9 +195,9 @@ export default function PartsPage() {
           <motion.div variants={motionVariants.quickIn}>
             <Card>
               <CardHeader className="text-center">
-                <CardTitle className="text-2xl">Parts Selection</CardTitle>
+                <CardTitle className="text-2xl">Wybór Części</CardTitle>
                 <CardDescription>
-                  Add the parts you need. You can include photos and notes for better identification.
+                  Dodaj części, których potrzebujesz. Możesz dołączyć zdjęcia i notatki dla lepszej identyfikacji.
                 </CardDescription>
               </CardHeader>
               
@@ -212,7 +212,7 @@ export default function PartsPage() {
                       >
                         <div className="flex items-center justify-between">
                           <h4 className="text-lg font-medium text-text">
-                            Part {index + 1}
+                            Część {index + 1}
                           </h4>
                           {fields.length > 1 && (
                             <Button
@@ -220,7 +220,7 @@ export default function PartsPage() {
                               variant="ghost"
                               size="sm"
                               onClick={() => removeItem(index)}
-                              className="text-danger hover:text-danger"
+                              className="text-danger hover:text-danger hover:bg-danger/10"
                             >
                               <TrashIcon className="h-4 w-4" />
                             </Button>
@@ -229,12 +229,15 @@ export default function PartsPage() {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
+                            <label className="block text-sm font-medium text-text mb-2">
+                              Wyszukiwana część
+                            </label>
                             <Select
                               value={watch(`items.${index}.categoryId`)}
                               onValueChange={(value) => setValue(`items.${index}.categoryId`, value)}
                             >
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select a category..." />
+                              <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Wybierz kategorię..." />
                               </SelectTrigger>
                               <SelectContent>
                                 {categoryOptions.map((option) => (
@@ -253,7 +256,7 @@ export default function PartsPage() {
 
                           <div>
                             <Input
-                              label="Quantity"
+                              label="Ilość"
                               type="number"
                               min="1"
                               max="999"
@@ -265,21 +268,21 @@ export default function PartsPage() {
 
                         <div>
                           <Textarea
-                            label="Notes (Optional)"
-                            placeholder="Any specific details, part numbers, or requirements..."
+                            label="Notatki (Opcjonalnie)"
+                            placeholder="Szczegóły, numery części lub wymagania..."
                             rows={3}
                             {...register(`items.${index}.note`)}
                             error={errors.items?.[index]?.note?.message}
                           />
                           <p className="mt-2 text-xs text-muted">
-                            Max 200 characters
+                            Maksymalnie 200 znaków
                           </p>
                         </div>
 
                         <div>
                           <ImageUploader
-                            label="Photo (Optional)"
-                            helperText="Upload a photo to help us identify the exact part you need"
+                            label="Zdjęcie (Opcjonalnie)"
+                            helperText="Prześlij zdjęcie, aby pomóc nam zidentyfikować dokładną część"
                             onFileSelect={(file) => setValue(`items.${index}.photoFile`, file)}
                             maxSize={5}
                             currentFile={watch(`items.${index}.photoFile`)}
@@ -297,17 +300,17 @@ export default function PartsPage() {
                       className="w-full max-w-sm border-2 border-dashed border-primary/30 hover:border-primary/50 hover:bg-primary/5 transition-all duration-200 text-primary hover:text-primary/80"
                     >
                       <PlusIcon className="mr-2 h-4 w-4" />
-                      Add Another Part
+                      Dodaj Kolejną Część
                     </Button>
                   </div>
 
                   <div className="bg-surface2/50 rounded-lg p-4 text-sm text-muted">
-                    <h4 className="font-medium text-text mb-2">Tips for better results:</h4>
+                    <h4 className="font-medium text-text mb-2">Wskazówki dla lepszych wyników:</h4>
                     <ul className="space-y-1 text-xs">
-                      <li>• Be as specific as possible in your part selection</li>
-                      <li>• Include photos when you're unsure about the exact part</li>
-                      <li>• Add notes with part numbers if you have them</li>
-                      <li>• You can always modify your request after submission</li>
+                      <li>• Bądź jak najbardziej szczegółowy w wyborze części</li>
+                      <li>• Dołącz zdjęcia, gdy nie jesteś pewien dokładnej części</li>
+                      <li>• Dodaj notatki z numerami części, jeśli je masz</li>
+                      <li>• Zawsze możesz zmodyfikować swoje zamówienie po złożeniu</li>
                     </ul>
                   </div>
 
@@ -316,7 +319,7 @@ export default function PartsPage() {
                       <Link href="/wizard/identify">
                         <Button variant="outline" size="lg" className="min-w-[140px] border-2 border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-200">
                           <ArrowLeftIcon className="mr-2 h-4 w-4" />
-                          Back to Vehicle Info
+                          Powrót do Informacji o Pojazdzie
                         </Button>
                       </Link>
                       
@@ -327,7 +330,7 @@ export default function PartsPage() {
                         size="lg"
                         className="min-w-[160px] bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-200"
                       >
-                        Continue to Review
+                        Kontynuuj do Podsumowania
                         <ArrowRightIcon className="ml-2 h-4 w-4" />
                       </Button>
                     </div>

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { Select } from '@/components/ui/Select'
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/Select'
 import { useToast } from '@/components/ui/Toast'
 import { formatDate, formatRelativeTime } from '@/lib/utils'
 import {
@@ -53,13 +53,13 @@ export function NotificationsView({ data }: NotificationsViewProps) {
   const [filter, setFilter] = useState('ALL')
   const [loading, setLoading] = useState(false)
 
-  const filterOptions = [
-    { value: 'ALL', label: 'All Notifications' },
-    { value: 'UNREAD', label: 'Unread Only' },
-    { value: 'STATUS_CHANGED', label: 'Status Updates' },
-    { value: 'COMMENT_ADDED', label: 'New Messages' },
-    { value: 'PAYMENT_SUCCEEDED', label: 'Payment Confirmations' },
-  ]
+      const filterOptions = [
+      { value: 'ALL', label: 'Wszystkie Powiadomienia' },
+      { value: 'UNREAD', label: 'Tylko Nieprzeczytane' },
+      { value: 'STATUS_CHANGED', label: 'Aktualizacje Statusu' },
+      { value: 'COMMENT_ADDED', label: 'Nowe Wiadomości' },
+      { value: 'PAYMENT_SUCCEEDED', label: 'Potwierdzenia Płatności' },
+    ]
 
   const filteredNotifications = notifications.filter(notification => {
     if (filter === 'ALL') return true
@@ -87,16 +87,16 @@ export function NotificationsView({ data }: NotificationsViewProps) {
         
         addToast({
           type: 'success',
-          title: 'Marked as read',
-          description: `${notificationIds.length} notification${notificationIds.length > 1 ? 's' : ''} marked as read`,
+          title: 'Oznaczono jako przeczytane',
+          description: `${notificationIds.length} powiadomienie${notificationIds.length > 1 ? 'a' : ''} oznaczono jako przeczytane`,
         })
       }
     } catch (error) {
       console.error('Error marking notifications as read:', error)
       addToast({
         type: 'error',
-        title: 'Error',
-        description: 'Could not update notifications',
+        title: 'Błąd',
+        description: 'Nie udało się zaktualizować powiadomień',
       })
     }
   }
@@ -118,16 +118,16 @@ export function NotificationsView({ data }: NotificationsViewProps) {
         
         addToast({
           type: 'success',
-          title: 'All notifications marked as read',
-          description: 'Your notification list has been cleared',
+          title: 'Wszystkie powiadomienia oznaczone jako przeczytane',
+          description: 'Twoja lista powiadomień została wyczyszczona',
         })
       }
     } catch (error) {
       console.error('Error marking all as read:', error)
       addToast({
         type: 'error',
-        title: 'Error',
-        description: 'Could not update notifications',
+        title: 'Błąd',
+        description: 'Nie udało się zaktualizować powiadomień',
       })
     } finally {
       setLoading(false)
@@ -160,14 +160,14 @@ export function NotificationsView({ data }: NotificationsViewProps) {
 
   const getTypeLabel = (type: string) => {
     const labelMap: Record<string, string> = {
-      STATUS_CHANGED: 'Status Update',
-      OFFER_ADDED: 'New Quote',
-      OFFER_UPDATED: 'Quote Updated',
-      COMMENT_ADDED: 'New Message',
-      PAYMENT_SUCCEEDED: 'Payment Confirmed',
-      PAYMENT_FAILED: 'Payment Failed',
-      ORDER_REMOVED: 'Order Removed',
-      ORDER_RESTORED: 'Order Restored',
+      STATUS_CHANGED: 'Aktualizacja Statusu',
+      OFFER_ADDED: 'Nowa Oferta',
+      OFFER_UPDATED: 'Oferta Zaktualizowana',
+      COMMENT_ADDED: 'Nowa Wiadomość',
+      PAYMENT_SUCCEEDED: 'Płatność Potwierdzona',
+      PAYMENT_FAILED: 'Płatność Nieudana',
+      ORDER_REMOVED: 'Zamówienie Usunięte',
+      ORDER_RESTORED: 'Zamówienie Przywrócone',
     }
     return labelMap[type] || type.replace('_', ' ')
   }
@@ -178,20 +178,20 @@ export function NotificationsView({ data }: NotificationsViewProps) {
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="sm" asChild>
-            <Link href="/">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
-            </Link>
+                          <Link href="/">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Powrót do Strony Głównej
+              </Link>
           </Button>
-          <div>
-            <h1 className="text-3xl font-bold">Notifications</h1>
-            <p className="text-muted">
-              {unreadCount > 0 
-                ? `${unreadCount} unread notification${unreadCount > 1 ? 's' : ''}`
-                : 'All caught up!'
-              }
-            </p>
-          </div>
+                      <div>
+              <h1 className="text-3xl font-bold">Powiadomienia</h1>
+              <p className="text-muted">
+                {unreadCount > 0 
+                  ? `${unreadCount} nieprzeczytane powiadomienie${unreadCount > 1 ? 'a' : ''}`
+                  : 'Wszystko przeczytane!'
+                }
+              </p>
+            </div>
         </div>
         
         {unreadCount > 0 && (
@@ -201,7 +201,7 @@ export function NotificationsView({ data }: NotificationsViewProps) {
             loading={loading}
           >
             <Check className="h-4 w-4 mr-2" />
-            Mark All Read
+            Oznacz Wszystkie jako Przeczytane
           </Button>
         )}
       </div>
@@ -211,14 +211,20 @@ export function NotificationsView({ data }: NotificationsViewProps) {
         <CardContent className="pt-6">
           <div className="flex items-center gap-4">
             <Filter className="h-5 w-5 text-muted" />
-            <Select
-              options={filterOptions}
-              value={filter}
-              onChange={(e) => setFilter(e.target.value)}
-              className="w-48"
-            />
+            <Select value={filter} onValueChange={setFilter}>
+              <SelectTrigger className="w-48">
+                <SelectValue placeholder="Filtruj powiadomienia" />
+              </SelectTrigger>
+              <SelectContent>
+                {filterOptions.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             <span className="text-sm text-muted">
-              Showing {filteredNotifications.length} of {notifications.length} notifications
+              Pokazuję {filteredNotifications.length} z {notifications.length} powiadomień
             </span>
           </div>
         </CardContent>
@@ -230,12 +236,12 @@ export function NotificationsView({ data }: NotificationsViewProps) {
           <CardContent className="text-center py-12">
             <Bell className="h-12 w-12 text-muted mx-auto mb-4" />
             <h3 className="text-lg font-medium text-text mb-2">
-              {filter === 'UNREAD' ? 'No unread notifications' : 'No notifications'}
+              {filter === 'UNREAD' ? 'Brak nieprzeczytanych powiadomień' : 'Brak powiadomień'}
             </h3>
             <p className="text-muted">
               {filter === 'UNREAD' 
-                ? 'All your notifications have been read!'
-                : 'New notifications will appear here when you have activity on your orders.'
+                ? 'Wszystkie powiadomienia zostały przeczytane!'
+                : 'Nowe powiadomienia pojawią się tutaj, gdy będziesz miał aktywność w swoich zamówieniach.'
               }
             </p>
           </CardContent>
@@ -291,7 +297,7 @@ export function NotificationsView({ data }: NotificationsViewProps) {
                       <div className="flex items-center gap-4">
                         {notification.orderRequest && (
                           <span className="text-primary font-medium">
-                            Order #{notification.orderRequest.shortCode}
+                            Zamówienie #{notification.orderRequest.shortCode}
                           </span>
                         )}
                         <span>
@@ -315,29 +321,29 @@ export function NotificationsView({ data }: NotificationsViewProps) {
       {notifications.length > 0 && (
         <Card className="mt-8">
           <CardHeader>
-            <CardTitle>Notification Summary</CardTitle>
+            <CardTitle>Podsumowanie Powiadomień</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
               <div>
                 <p className="text-2xl font-bold text-text">{notifications.length}</p>
-                <p className="text-sm text-muted">Total</p>
+                <p className="text-sm text-muted">Łącznie</p>
               </div>
               <div>
                 <p className="text-2xl font-bold text-warning">{unreadCount}</p>
-                <p className="text-sm text-muted">Unread</p>
+                <p className="text-sm text-muted">Nieprzeczytane</p>
               </div>
               <div>
                 <p className="text-2xl font-bold text-primary">
                   {notifications.filter(n => n.type === 'STATUS_CHANGED').length}
                 </p>
-                <p className="text-sm text-muted">Status Updates</p>
+                <p className="text-sm text-muted">Aktualizacje Statusu</p>
               </div>
               <div>
                 <p className="text-2xl font-bold text-success">
                   {notifications.filter(n => n.type === 'PAYMENT_SUCCEEDED').length}
                 </p>
-                <p className="text-sm text-muted">Payments</p>
+                <p className="text-sm text-muted">Płatności</p>
               </div>
             </div>
           </CardContent>

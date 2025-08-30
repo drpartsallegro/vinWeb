@@ -32,16 +32,16 @@ const ImageUploader = React.forwardRef<HTMLDivElement, ImageUploaderProps>(
   ) => {
     const fileInputRef = React.useRef<HTMLInputElement>(null)
 
-    const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileSelect = async (event: React.ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0]
       if (!file) return
 
       if (!acceptedTypes.includes(file.type)) {
-        alert(`File type ${file.type} is not supported`)
+        alert(`Typ pliku ${file.type} nie jest obsługiwany`)
         return
       }
       if (file.size > maxSize * 1024 * 1024) {
-        alert(`File size must be less than ${maxSize}MB`)
+        alert(`Rozmiar pliku musi być mniejszy niż ${maxSize}MB`)
         return
       }
 
@@ -53,17 +53,17 @@ const ImageUploader = React.forwardRef<HTMLDivElement, ImageUploaderProps>(
       onFileSelect?.(null)
     }
 
-    const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    const handleDrop = async (event: React.DragEvent<HTMLDivElement>) => {
       event.preventDefault()
       const file = event.dataTransfer.files[0]
       if (!file) return
 
       if (!acceptedTypes.includes(file.type)) {
-        alert(`File type ${file.type} is not supported`)
+        alert(`Typ pliku ${file.type} nie jest obsługiwany`)
         return
       }
       if (file.size > maxSize * 1024 * 1024) {
-        alert(`File size must be less than ${maxSize}MB`)
+        alert(`Rozmiar pliku musi być mniejszy niż ${maxSize}MB`)
         return
       }
 
@@ -104,10 +104,10 @@ const ImageUploader = React.forwardRef<HTMLDivElement, ImageUploaderProps>(
             <div className="text-center">
               <Upload className="mx-auto h-8 w-8 text-muted mb-2" />
               <p className="text-sm text-muted mb-1">
-                Drag and drop an image here, or click to select
+                                                          Przeciągnij i upuść obraz tutaj, lub kliknij aby wybrać
               </p>
               <p className="text-xs text-muted">
-                {acceptedTypes.join(", ")} up to {maxSize}MB
+                {acceptedTypes.join(", ")} do {maxSize}MB 
               </p>
             </div>
           </div>
@@ -116,7 +116,7 @@ const ImageUploader = React.forwardRef<HTMLDivElement, ImageUploaderProps>(
             <div className="aspect-square rounded-lg overflow-hidden border border-border bg-surface-2">
               <img
                 src={URL.createObjectURL(currentFile)}
-                alt="Uploaded image"
+                alt="Przesłany obraz"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -127,7 +127,7 @@ const ImageUploader = React.forwardRef<HTMLDivElement, ImageUploaderProps>(
                   className="h-8 px-3"
                 >
                   <X className="h-4 w-4 mr-1" />
-                  Remove
+                  Usuń
                 </Button>
               </div>
             </div>

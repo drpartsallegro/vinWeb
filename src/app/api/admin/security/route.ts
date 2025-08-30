@@ -287,7 +287,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    console.error('Error processing security action:', error)
+          console.error('Błąd podczas przetwarzania akcji bezpieczeństwa:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

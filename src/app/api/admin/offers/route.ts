@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Update order status to VALUATED if it was PENDING
+            // Aktualizuj status zamówienia na VALUATED jeśli było PENDING
     if (orderItem.orderRequest.status === 'PENDING') {
       await prisma.orderRequest.update({
         where: { id: orderItem.orderRequest.id },
@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
     }, { status: 201 })
 
   } catch (error) {
-    console.error('Error creating offer:', error)
+          console.error('Błąd podczas tworzenia oferty:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -135,7 +135,7 @@ export async function PUT(request: NextRequest) {
     })
 
   } catch (error) {
-    console.error('Error updating offer:', error)
+          console.error('Błąd podczas aktualizacji oferty:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -195,7 +195,7 @@ export async function DELETE(request: NextRequest) {
       where: { orderItemId: existingOffer.orderItem.id }
     })
 
-    // If no offers remain, update order status back to PENDING and order item state to REQUESTED
+            // Jeśli nie ma już ofert, zaktualizuj status zamówienia z powrotem na PENDING i stan elementu zamówienia na REQUESTED
     if (remainingOffers === 0) {
       await Promise.all([
         prisma.orderRequest.update({
@@ -214,7 +214,7 @@ export async function DELETE(request: NextRequest) {
     })
 
   } catch (error) {
-    console.error('Error deleting offer:', error)
+          console.error('Błąd podczas usuwania oferty:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

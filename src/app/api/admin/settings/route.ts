@@ -367,7 +367,7 @@ export async function POST(request: NextRequest) {
     }
 
   } catch (error) {
-    console.error('Error processing settings action:', error)
+          console.error('Błąd podczas przetwarzania akcji ustawień:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

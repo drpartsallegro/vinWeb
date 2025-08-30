@@ -259,10 +259,10 @@ export function OrderDetailView({ order, isGuest, isAdmin = false, token }: Orde
           >
             <div className="flex items-center gap-4">
               {!isGuest && (
-                <Button variant="ghost-primary" size="sm" className="flex-1" asChild>
+                <Button variant="ghost-primary" size="sm" className="flex-1 hover:bg-primary/10 hover:text-primary transition-all duration-200" asChild>
                   <Link href="/orders">
                     <ArrowLeft className="h-4 w-4 mr-2" />
-                    Back to Orders
+                    Powrót do Zamówień
                   </Link>
                 </Button>
               )}
@@ -281,7 +281,7 @@ export function OrderDetailView({ order, isGuest, isAdmin = false, token }: Orde
               <motion.div variants={motionVariants.quickIn}>
                 <Card>
                   <CardHeader>
-                    <CardTitle>Order Status</CardTitle>
+                    <CardTitle>Status Zamówienia</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <OrderTimeline 
@@ -298,16 +298,16 @@ export function OrderDetailView({ order, isGuest, isAdmin = false, token }: Orde
               <motion.div variants={motionVariants.quickIn}>
                 <Card>
                   <CardHeader>
-                    <CardTitle>Vehicle Information</CardTitle>
+                    <CardTitle>Informacje o Pojazdzie</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <span className="text-sm text-muted">VIN Number</span>
+                        <span className="text-sm text-muted">Numer VIN</span>
                         <p className="font-mono text-lg text-text">{order.vin}</p>
                       </div>
                       <div>
-                        <span className="text-sm text-muted">Contact Email</span>
+                        <span className="text-sm text-muted">Email Kontaktowy</span>
                         <p className="text-text">{order.guestEmail || order.user?.email}</p>
                       </div>
                     </div>
@@ -319,7 +319,7 @@ export function OrderDetailView({ order, isGuest, isAdmin = false, token }: Orde
               <motion.div variants={motionVariants.quickIn}>
                 <Card>
                   <CardHeader>
-                    <CardTitle>Parts Requested ({order.items.length})</CardTitle>
+                    <CardTitle>Zamówione Części ({order.items.length})</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {order.items.map((item: any) => (
@@ -329,11 +329,11 @@ export function OrderDetailView({ order, isGuest, isAdmin = false, token }: Orde
                             <h4 className="font-medium text-text">{item.category.name}</h4>
                             <p className="text-sm text-muted">{item.categoryPath}</p>
                             <div className="mt-2 text-sm">
-                              <span className="text-muted">Quantity:</span> <span className="text-text">{item.quantity}</span>
+                              <span className="text-muted">Ilość:</span> <span className="text-text">{item.quantity}</span>
                             </div>
                             {item.note && (
                               <div className="mt-2 text-sm">
-                                <span className="text-muted">Note:</span> <span className="text-text">{item.note}</span>
+                                <span className="text-muted">Notatka:</span> <span className="text-text">{item.note}</span>
                               </div>
                             )}
                           </div>
@@ -348,7 +348,7 @@ export function OrderDetailView({ order, isGuest, isAdmin = false, token }: Orde
                                   rel="noopener noreferrer"
                                   className="hover:text-primary transition-colors"
                                 >
-                                  View Photo
+                                  Zobacz Zdjęcie
                                 </a>
                               </div>
                             )}
