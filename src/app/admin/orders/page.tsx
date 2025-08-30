@@ -6,7 +6,7 @@ import { prisma } from '@/lib/db'
 import { AdminOrdersList } from '@/components/admin/AdminOrdersList'
 
 export const metadata: Metadata = {
-  title: 'Orders Management',
+  title: 'Zarządzanie Zamówieniami',
 }
 
 interface AdminOrdersPageProps {
@@ -127,9 +127,9 @@ export default async function AdminOrdersPage({ searchParams }: AdminOrdersPageP
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-text">Orders Management</h1>
+        <h1 className="text-3xl font-bold text-text">Zarządzanie Zamówieniami</h1>
         <p className="text-muted mt-1">
-          Manage and track all customer orders ({ordersData.totalCount} total)
+          Zarządzaj i śledź wszystkie zamówienia klientów ({ordersData.totalCount} łącznie)
         </p>
       </div>
 

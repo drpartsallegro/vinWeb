@@ -30,11 +30,11 @@ export function OrdersListView({ orders }: OrdersListViewProps) {
   const [statusFilter, setStatusFilter] = useState('ALL')
 
   const statusOptions = [
-    { value: 'ALL', label: 'All Orders' },
-    { value: 'PENDING', label: 'Pending' },
-    { value: 'VALUATED', label: 'Quoted' },
-    { value: 'PAID', label: 'Paid' },
-    { value: 'REMOVED', label: 'Removed' },
+    { value: 'ALL', label: 'Wszystkie Zamówienia' },
+    { value: 'PENDING', label: 'Oczekujące' },
+    { value: 'VALUATED', label: 'Wycena' },
+    { value: 'PAID', label: 'Opłacone' },
+    { value: 'REMOVED', label: 'Usunięte' },
   ]
 
   const filteredOrders = orders.filter(order => {
@@ -76,13 +76,13 @@ export function OrdersListView({ orders }: OrdersListViewProps) {
             className="flex items-center justify-between mb-8"
           >
             <div>
-              <h1 className="text-3xl font-bold text-text">My Orders</h1>
-              <p className="text-muted mt-1">Track and manage your parts requests</p>
+              <h1 className="text-3xl font-bold text-text">Moje Zamówienia</h1>
+              <p className="text-muted mt-1">Śledź i zarządzaj swoimi zgłoszeniami części</p>
             </div>
             <Button asChild>
               <Link href="/wizard">
                 <Plus className="h-4 w-4 mr-2" />
-                New Order
+                Nowe Zamówienie
               </Link>
             </Button>
           </motion.div>
@@ -94,7 +94,7 @@ export function OrdersListView({ orders }: OrdersListViewProps) {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="flex-1">
                     <Input
-                      placeholder="Search by order number, VIN, or part category..."
+                      placeholder="Szukaj po numerze zamówienia, VIN lub kategorii części..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="w-full"
@@ -106,7 +106,7 @@ export function OrdersListView({ orders }: OrdersListViewProps) {
                       onValueChange={setStatusFilter}
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Filter by status" />
+                        <SelectValue placeholder="Filtruj według statusu" />
                       </SelectTrigger>
                       <SelectContent>
                         {statusOptions.map((option) => (
@@ -132,14 +132,14 @@ export function OrdersListView({ orders }: OrdersListViewProps) {
                       <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Truck className="h-8 w-8 text-primary" />
                       </div>
-                      <h3 className="text-lg font-medium text-text mb-2">No orders yet</h3>
+                      <h3 className="text-lg font-medium text-text mb-2">Brak zamówień</h3>
                       <p className="text-muted mb-6">
-                        Ready to find parts for your vehicle? Start by submitting your first request.
+                        Gotowy, aby znaleźć części do swojego pojazdu? Zacznij od złożenia pierwszego zgłoszenia.
                       </p>
                       <Button asChild>
                         <Link href="/wizard">
                           <Plus className="h-4 w-4 mr-2" />
-                          Create Your First Order
+                          Utwórz Pierwsze Zamówienie
                         </Link>
                       </Button>
                     </div>
@@ -148,9 +148,9 @@ export function OrdersListView({ orders }: OrdersListViewProps) {
                       <div className="w-16 h-16 bg-muted/20 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Search className="h-8 w-8 text-muted" />
                       </div>
-                      <h3 className="text-lg font-medium text-text mb-2">No orders found</h3>
+                      <h3 className="text-lg font-medium text-text mb-2">Nie znaleziono zamówień</h3>
                       <p className="text-muted">
-                        Try adjusting your search or filter criteria.
+                        Spróbuj dostosować wyszukiwanie lub kryteria filtrowania.
                       </p>
                     </div>
                   )}
@@ -178,7 +178,7 @@ export function OrdersListView({ orders }: OrdersListViewProps) {
                             {/* Order Header */}
                             <div className="flex items-center gap-4 mb-3">
                               <h3 className="text-lg font-semibold text-text">
-                                Order #{order.shortCode}
+                                Zamówienie #{order.shortCode}
                               </h3>
                               <StatusChip status={order.status} />
                               {hasUnreadComments && (
@@ -196,11 +196,11 @@ export function OrdersListView({ orders }: OrdersListViewProps) {
                                 <p className="font-mono text-sm text-text">{order.vin}</p>
                               </div>
                               <div>
-                                <span className="text-sm text-muted">Items</span>
-                                <p className="text-sm text-text">{order.items.length} part{order.items.length !== 1 ? 's' : ''}</p>
+                                <span className="text-sm text-muted">Elementy</span>
+                                <p className="text-sm text-text">{order.items.length} część{order.items.length !== 1 ? 'i' : ''}</p>
                               </div>
                               <div>
-                                <span className="text-sm text-muted">Submitted</span>
+                                <span className="text-sm text-muted">Złożone</span>
                                 <div className="flex items-center text-sm text-text">
                                   <Calendar className="h-4 w-4 mr-1 text-muted" />
                                   {formatDate(order.createdAt)}
@@ -210,7 +210,7 @@ export function OrdersListView({ orders }: OrdersListViewProps) {
 
                             {/* Parts Summary */}
                             <div className="mb-4">
-                              <span className="text-sm text-muted">Parts requested:</span>
+                              <span className="text-sm text-muted">Zamówione części:</span>
                               <div className="flex flex-wrap gap-2 mt-1">
                                 {order.items.slice(0, 3).map((item: any) => (
                                   <span 
@@ -222,7 +222,7 @@ export function OrdersListView({ orders }: OrdersListViewProps) {
                                 ))}
                                 {order.items.length > 3 && (
                                   <span className="px-2 py-1 text-xs bg-chip text-muted rounded-full">
-                                    +{order.items.length - 3} more
+                                    +{order.items.length - 3} więcej
                                   </span>
                                 )}
                               </div>
@@ -233,7 +233,7 @@ export function OrdersListView({ orders }: OrdersListViewProps) {
                           <div className="text-right space-y-3">
                             {total && (
                               <div>
-                                <span className="text-sm text-muted">Total</span>
+                                <span className="text-sm text-muted">Suma</span>
                                 <p className="text-lg font-semibold text-text">
                                   {formatPrice(total)}
                                 </p>
@@ -244,7 +244,7 @@ export function OrdersListView({ orders }: OrdersListViewProps) {
                               <Button asChild size="sm">
                                 <Link href={`/orders/${order.id}`}>
                                   <Eye className="h-4 w-4 mr-2" />
-                                  View Details
+                                  Zobacz Szczegóły
                                 </Link>
                               </Button>
                               
@@ -252,7 +252,7 @@ export function OrdersListView({ orders }: OrdersListViewProps) {
                                 <Button variant="outline" size="sm" asChild>
                                   <Link href={`/orders/${order.id}/checkout`}>
                                     <CreditCard className="h-4 w-4 mr-2" />
-                                    Checkout
+                                    Finalizuj
                                   </Link>
                                 </Button>
                               )}
@@ -264,22 +264,22 @@ export function OrdersListView({ orders }: OrdersListViewProps) {
                         <div className="mt-4 pt-4 border-t border-border">
                           {order.status === 'PENDING' && (
                             <p className="text-sm text-muted">
-                              ⏳ We're reviewing your request and will send quotes within 24 hours.
+                              ⏳ Przeglądamy Twoje zgłoszenie i wyślemy wyceny w ciągu 24 godzin.
                             </p>
                           )}
                           {order.status === 'VALUATED' && (
                             <p className="text-sm text-primary">
-                              💰 Quotes are ready! Review and select the parts you want to purchase.
+                              💰 Wyceny są gotowe! Przejrzyj i wybierz części, które chcesz kupić.
                             </p>
                           )}
                           {order.status === 'PAID' && (
                             <p className="text-sm text-success">
-                              ✅ Payment confirmed. Your parts are being prepared for shipping.
+                              ✅ Płatność potwierdzona. Twoje części są przygotowywane do wysyłki.
                             </p>
                           )}
                           {order.status === 'REMOVED' && (
                             <p className="text-sm text-muted">
-                              🗑️ This order has been removed. You can create a new request if needed.
+                              🗑️ To zamówienie zostało usunięte. Możesz utworzyć nowe zgłoszenie, jeśli potrzebujesz.
                             </p>
                           )}
                         </div>
@@ -296,31 +296,31 @@ export function OrdersListView({ orders }: OrdersListViewProps) {
             <motion.div variants={motionVariants.quickIn} className="mt-8">
               <Card>
                 <CardHeader>
-                  <CardTitle>Order Summary</CardTitle>
+                  <CardTitle>Podsumowanie Zamówień</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                     <div>
                       <p className="text-2xl font-bold text-text">{orders.length}</p>
-                      <p className="text-sm text-muted">Total Orders</p>
+                      <p className="text-sm text-muted">Wszystkie Zamówienia</p>
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-warn">
                         {orders.filter(o => o.status === 'PENDING').length}
                       </p>
-                      <p className="text-sm text-muted">Pending</p>
+                      <p className="text-sm text-muted">Oczekujące</p>
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-primary">
                         {orders.filter(o => o.status === 'VALUATED').length}
                       </p>
-                      <p className="text-sm text-muted">Ready to Order</p>
+                      <p className="text-sm text-muted">Gotowe do Zamówienia</p>
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-success">
                         {orders.filter(o => o.status === 'PAID').length}
                       </p>
-                      <p className="text-sm text-muted">Completed</p>
+                      <p className="text-sm text-muted">Zakończone</p>
                     </div>
                   </div>
                 </CardContent>

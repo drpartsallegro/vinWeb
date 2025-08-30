@@ -9,14 +9,14 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
-    default: 'PartsFlow - Premium Auto Parts',
-    template: '%s | PartsFlow',
+    default: 'Kup Tanie Części - Tanie Części Samochodowe',
+    template: '%s | Kup Tanie Części',
   },
-  description: 'Find and order premium auto parts with our VIN-based search system. Fast delivery, competitive prices, and expert support.',
-  keywords: ['auto parts', 'car parts', 'VIN search', 'automotive', 'parts catalog'],
-  authors: [{ name: 'PartsFlow Team' }],
-  creator: 'PartsFlow',
-  publisher: 'PartsFlow',
+  description: 'Znajdź i zamów tanie części samochodowe dzięki naszemu systemowi wyszukiwania opartemu na VIN. Szybka dostawa, konkurencyjne ceny i eksperckie wsparcie.',
+  keywords: ['części samochodowe', 'tanie części', 'wyszukiwanie VIN', 'motoryzacja', 'katalog części'],
+  authors: [{ name: 'Zespół Kup Tanie Części' }],
+  creator: 'Kup Tanie Części',
+  publisher: 'Kup Tanie Części',
   formatDetection: {
     email: false,
     address: false,
@@ -30,22 +30,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'pl_PL',
     url: '/',
-    title: 'PartsFlow - Premium Auto Parts',
-    description: 'Find and order premium auto parts with our VIN-based search system. Fast delivery, competitive prices, and expert support.',
-    siteName: 'PartsFlow',
+    title: 'Kup Tanie Części - Tanie Części Samochodowe',
+    description: 'Znajdź i zamów tanie części samochodowe dzięki naszemu systemowi wyszukiwania opartemu na VIN. Szybka dostawa, konkurencyjne ceny i eksperckie wsparcie.',
+    siteName: 'Kup Tanie Części',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'PartsFlow - Premium Auto Parts',
+        alt: 'Kup Tanie Części - Tanie Części Samochodowe',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PartsFlow - Premium Auto Parts',
-    description: 'Find and order premium auto parts with our VIN-based search system. Fast delivery, competitive prices, and expert support.',
+    title: 'Kup Tanie Części - Tanie Części Samochodowe',
+    description: 'Znajdź i zamów tanie części samochodowe dzięki naszemu systemowi wyszukiwania opartemu na VIN. Szybka dostawa, konkurencyjne ceny i eksperckie wsparcie.',
     images: ['/og-image.jpg'],
   },
   robots: {
@@ -78,7 +78,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#3B82F6" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="PartsFlow" />
+        <meta name="apple-mobile-web-app-title" content="Kup Tanie Części" />
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
       </head>
       <body className={`${inter.className} antialiased`}>
@@ -91,28 +91,28 @@ export default function RootLayout({
 
         {/* JSON-LD Structured Data */}
         <OrganizationJsonLd
-          name="PartsFlow"
+          name="Kup Tanie Części"
           url={baseUrl}
           logo={`${baseUrl}/logo.svg`}
-          description="Premium auto parts with VIN-based precision matching. Find and order the right parts for your vehicle with competitive pricing and expert support."
+          description="Tanie części samochodowe z precyzyjnym dopasowaniem opartym na VIN. Znajdź i zamów odpowiednie części do swojego pojazdu w konkurencyjnych cenach z eksperckim wsparciem."
           address={{
-            streetAddress: "123 Auto Parts Street",
-            addressLocality: "Warsaw",
+            streetAddress: "ul. Części Samochodowych 123",
+            addressLocality: "Warszawa",
             addressRegion: "Mazowieckie",
             postalCode: "00-001",
             addressCountry: "PL"
           }}
           contactPoint={{
             telephone: "+48-123-456-789",
-            contactType: "customer service",
-            availableLanguage: ["Polish", "English"]
+            contactType: "obsługa klienta",
+            availableLanguage: ["Polski", "Angielski"]
           }}
         />
 
         <WebsiteJsonLd
-          name="PartsFlow - Premium Auto Parts"
+          name="Kup Tanie Części - Tanie Części Samochodowe"
           url={baseUrl}
-          description="Find and order premium auto parts with our VIN-based search system. Fast delivery, competitive prices, and expert support guaranteed."
+          description="Znajdź i zamów tanie części samochodowe dzięki naszemu systemowi wyszukiwania opartemu na VIN. Szybka dostawa, konkurencyjne ceny i eksperckie wsparcie gwarantowane."
           potentialAction={{
             target: `${baseUrl}/wizard?vin={search_term_string}`,
             queryInput: "required name=search_term_string"

@@ -3,7 +3,7 @@ import { prisma } from '@/lib/db'
 import { AdminDashboard } from '@/components/admin/AdminDashboard'
 
 export const metadata: Metadata = {
-  title: 'Dashboard',
+  title: 'Panel Administracyjny',
 }
 
 async function getDashboardStats() {

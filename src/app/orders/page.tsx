@@ -6,8 +6,8 @@ import { OrdersListView } from '@/components/features/OrdersListView'
 import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
-  title: 'My Orders',
-  description: 'View and track your auto parts orders',
+  title: 'Moje Zamówienia',
+  description: 'Przeglądaj i śledź swoje zamówienia części samochodowych',
 }
 
 async function getUserOrders(userId: string) {

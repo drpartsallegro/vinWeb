@@ -16,17 +16,17 @@ import { HeaderNav } from '@/components/ui/HeaderNav'
 import { motionVariants } from '@/lib/motion'
 
 const loginSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  email: z.string().email('Proszę wprowadzić poprawny adres email'),
+  password: z.string().min(6, 'Hasło musi mieć co najmniej 6 znaków'),
 })
 
 const registerSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  name: z.string().min(2, 'Imię musi mieć co najmniej 2 znaki'),
+  email: z.string().email('Proszę wprowadzić poprawny adres email'),
+  password: z.string().min(6, 'Hasło musi mieć co najmniej 6 znaków'),
   confirmPassword: z.string(),
 }).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
+  message: "Hasła nie pasują do siebie",
   path: ["confirmPassword"],
 })
 
@@ -72,7 +72,7 @@ export default function LoginPage() {
       })
 
       if (result?.error) {
-        setError('Invalid email or password')
+        setError('Nieprawidłowy email lub hasło')
       } else {
         // Check user role and redirect accordingly
         try {
@@ -93,7 +93,7 @@ export default function LoginPage() {
         }
       }
     } catch (error) {
-      setError('An error occurred. Please try again.')
+      setError('Wystąpił błąd. Proszę spróbować ponownie.')
     } finally {
       setIsLoading(false)
     }
@@ -125,16 +125,16 @@ export default function LoginPage() {
         })
 
         if (result?.error) {
-          setError('Registration successful but login failed. Please try logging in.')
+          setError('Rejestracja udana, ale logowanie nie powiodło się. Proszę spróbować się zalogować.')
         } else {
           router.push('/orders')
         }
       } else {
         const errorData = await response.json()
-        setError(errorData.message || 'Registration failed. Please try again.')
+        setError(errorData.message || 'Rejestracja nie powiodła się. Proszę spróbować ponownie.')
       }
     } catch (error) {
-      setError('An error occurred. Please try again.')
+      setError('Wystąpił błąd. Proszę spróbować ponownie.')
     } finally {
       setIsLoading(false)
     }
@@ -160,12 +160,12 @@ export default function LoginPage() {
               <Lock className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-3xl font-bold text-text mb-2">
-              {isLogin ? 'Welcome Back' : 'Create Account'}
+              {isLogin ? 'Witaj Ponownie' : 'Utwórz Konto'}
             </h1>
             <p className="text-muted">
               {isLogin 
-                ? 'Sign in to access your account and orders'
-                : 'Join thousands of satisfied customers'
+                ? 'Zaloguj się, aby uzyskać dostęp do swojego konta i zamówień'
+                : 'Dołącz do tysięcy zadowolonych klientów'
               }
             </p>
           </motion.div>
@@ -175,12 +175,12 @@ export default function LoginPage() {
             <Card className="w-full">
               <CardHeader className="text-center pb-4">
                 <CardTitle className="text-xl">
-                  {isLogin ? 'Sign In' : 'Sign Up'}
+                  {isLogin ? 'Zaloguj Się' : 'Zarejestruj Się'}
                 </CardTitle>
                 <CardDescription>
                   {isLogin 
-                    ? 'Enter your credentials to continue'
-                    : 'Fill in your details to get started'
+                    ? 'Wprowadź swoje dane logowania, aby kontynuować'
+                    : 'Wypełnij swoje dane, aby rozpocząć'
                   }
                 </CardDescription>
               </CardHeader>
@@ -190,9 +190,9 @@ export default function LoginPage() {
                   <form onSubmit={loginForm.handleSubmit(onLoginSubmit)} className="space-y-4">
                     <div>
                       <Input
-                        label="Email Address"
+                        label="Adres Email"
                         type="email"
-                        placeholder="your.email@example.com"
+                        placeholder="twoj.email@przykład.com"
                         leftIcon={<Mail className="w-4 h-4" />}
                         {...loginForm.register('email')}
                         error={loginForm.formState.errors.email?.message}
@@ -201,9 +201,9 @@ export default function LoginPage() {
 
                     <div>
                       <Input
-                        label="Password"
+                        label="Hasło"
                         type={showPassword ? 'text' : 'password'}
-                        placeholder="Enter your password"
+                        placeholder="Wprowadź swoje hasło"
                         leftIcon={<Lock className="w-4 h-4" />}
                         rightIcon={
                           <button
@@ -231,25 +231,22 @@ export default function LoginPage() {
                       disabled={!loginForm.formState.isValid || isLoading}
                       loading={isLoading}
                     >
-                      Sign In
+                      Zaloguj Się
                       <ArrowRightIcon className="ml-2 h-4 w-4" />
                     </Button>
 
                     <div className="text-center">
-                      <Link 
-                        href="/forgot-password"
-                        className="text-sm text-primary hover:text-primary-2 transition-colors"
-                      >
-                        Forgot your password?
-                      </Link>
+                      <p className="text-sm text-muted">
+                        Skontaktuj się z obsługą klienta w przypadku problemów z logowaniem
+                      </p>
                     </div>
                   </form>
                 ) : (
                   <form onSubmit={registerForm.handleSubmit(onRegisterSubmit)} className="space-y-4">
                     <div>
                       <Input
-                        label="Full Name"
-                        placeholder="Enter your full name"
+                        label="Pełne Imię"
+                        placeholder="Wprowadź swoje pełne imię"
                         leftIcon={<User className="w-4 h-4" />}
                         {...registerForm.register('name')}
                         error={registerForm.formState.errors.name?.message}
@@ -258,9 +255,9 @@ export default function LoginPage() {
 
                     <div>
                       <Input
-                        label="Email Address"
+                        label="Adres Email"
                         type="email"
-                        placeholder="your.email@example.com"
+                        placeholder="twoj.email@przykład.com"
                         leftIcon={<Mail className="w-4 h-4" />}
                         {...registerForm.register('email')}
                         error={registerForm.formState.errors.email?.message}
@@ -269,9 +266,9 @@ export default function LoginPage() {
 
                     <div>
                       <Input
-                        label="Password"
+                        label="Hasło"
                         type={showPassword ? 'text' : 'password'}
-                        placeholder="Create a password"
+                        placeholder="Utwórz hasło"
                         leftIcon={<Lock className="w-4 h-4" />}
                         rightIcon={
                           <button
@@ -289,9 +286,9 @@ export default function LoginPage() {
 
                     <div>
                       <Input
-                        label="Confirm Password"
+                        label="Potwierdź Hasło"
                         type={showConfirmPassword ? 'text' : 'password'}
-                        placeholder="Confirm your password"
+                        placeholder="Potwierdź swoje hasło"
                         leftIcon={<Lock className="w-4 h-4" />}
                         rightIcon={
                           <button
@@ -319,7 +316,7 @@ export default function LoginPage() {
                       disabled={!registerForm.formState.isValid || isLoading}
                       loading={isLoading}
                     >
-                      Create Account
+                      Utwórz Konto
                       <ArrowRightIcon className="ml-2 h-4 w-4" />
                     </Button>
                   </form>
@@ -328,7 +325,7 @@ export default function LoginPage() {
                 {/* Toggle between login/register */}
                 <div className="mt-6 pt-6 border-t border-border text-center">
                   <p className="text-sm text-muted mb-2">
-                    {isLogin ? "Don't have an account?" : "Already have an account?"}
+                    {isLogin ? "Nie masz konta?" : "Masz już konto?"}
                   </p>
                   <button
                     onClick={() => {
@@ -339,7 +336,7 @@ export default function LoginPage() {
                     }}
                     className="text-primary hover:text-primary-2 transition-colors font-medium"
                   >
-                    {isLogin ? 'Create an account' : 'Sign in instead'}
+                    {isLogin ? 'Utwórz konto' : 'Zaloguj się zamiast tego'}
                   </button>
                 </div>
               </CardContent>
@@ -356,22 +353,22 @@ export default function LoginPage() {
                 <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center mx-auto mb-2">
                   <Shield className="w-5 h-5 text-primary" />
                 </div>
-                <h4 className="text-sm font-medium text-text">Secure</h4>
-                <p className="text-xs text-muted">Bank-level security for your data</p>
+                <h4 className="text-sm font-medium text-text">Bezpieczne</h4>
+                <p className="text-xs text-muted">Bezpieczeństwo na poziomie bankowym dla Twoich danych</p>
               </div>
               <div className="text-center">
                 <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center mx-auto mb-2">
                   <User className="w-5 h-5 text-primary" />
                 </div>
-                <h4 className="text-sm font-medium text-text">Personal</h4>
-                <p className="text-xs text-muted">Track your orders and history</p>
+                <h4 className="text-sm font-medium text-text">Osobiste</h4>
+                <p className="text-xs text-muted">Śledź swoje zamówienia i historię</p>
               </div>
               <div className="text-center">
                 <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center mx-auto mb-2">
                   <Lock className="w-5 h-5 text-primary" />
                 </div>
-                <h4 className="text-sm font-medium text-text">Private</h4>
-                <p className="text-xs text-muted">Your data stays with you</p>
+                <h4 className="text-sm font-medium text-text">Prywatne</h4>
+                <p className="text-xs text-muted">Twoje dane pozostają z Tobą</p>
               </div>
             </div>
           </motion.div>
@@ -384,7 +381,7 @@ export default function LoginPage() {
             <Button variant="outline" asChild>
               <Link href="/">
                 <ArrowLeftIcon className="mr-2 h-4 w-4" />
-                Back to Home
+                Powrót do Strony Głównej
               </Link>
             </Button>
           </motion.div>

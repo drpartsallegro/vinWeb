@@ -68,7 +68,7 @@ export default function SettingsPage() {
     try {
       const response = await fetch('/api/admin/settings');
       if (!response.ok) {
-        throw new Error(`Failed to fetch settings: ${response.status}`);
+        throw new Error(`Nie udało się pobrać ustawień: ${response.status}`);
       }
       
       const data = await response.json();
@@ -81,8 +81,8 @@ export default function SettingsPage() {
       setSystemStats(data.systemStats);
       setError(null);
     } catch (error) {
-      console.error('Error fetching settings:', error);
-      setError(error instanceof Error ? error.message : 'Failed to load settings');
+      console.error('Błąd podczas pobierania ustawień:', error);
+      setError(error instanceof Error ? error.message : 'Nie udało się załadować ustawień');
       
       // Set fallback configuration
       setConfig({
@@ -107,8 +107,8 @@ export default function SettingsPage() {
           emailOnCommentToAdmin: true,
         },
         brand: {
-          siteTitle: 'PartsFlow - Premium Auto Parts',
-          metaDescription: 'VIN-based auto parts ordering platform',
+          siteTitle: 'Kup Tanie Części - Tanie Części Samochodowe',
+          metaDescription: 'Platforma zamawiania części samochodowych oparta na VIN',
           logoUrl: '/logo.png',
           themeColor: '#3B82F6',
         },
@@ -153,13 +153,13 @@ export default function SettingsPage() {
         }),
       });
       
-      if (!response.ok) throw new Error('Failed to update settings');
+      if (!response.ok) throw new Error('Nie udało się zaktualizować ustawień');
       
-      alert('Settings updated successfully');
+      alert('Ustawienia zostały zaktualizowane pomyślnie');
       await fetchSettings(); // Refresh data
     } catch (error) {
-      console.error('Error updating settings:', error);
-      alert('Failed to update settings');
+      console.error('Błąd podczas aktualizacji ustawień:', error);
+      alert('Nie udało się zaktualizować ustawień');
     } finally {
       setIsSaving(false);
     }
@@ -186,8 +186,8 @@ export default function SettingsPage() {
     return (
       <div className="text-center py-12">
         <Settings className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-        <h3 className="text-lg font-medium">No configuration found</h3>
-        <p className="text-muted-foreground">Please check your database connection</p>
+        <h3 className="text-lg font-medium">Nie znaleziono konfiguracji</h3>
+        <p className="text-muted-foreground">Sprawdź połączenie z bazą danych</p>
       </div>
     );
   }
@@ -196,14 +196,14 @@ export default function SettingsPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Ustawienia</h1>
           <p className="text-muted-foreground">
-            Manage your shop configuration and system settings
+            Zarządzaj konfiguracją sklepu i ustawieniami systemu
           </p>
         </div>
         <Button onClick={fetchSettings} variant="outline">
           <RefreshCw className="h-4 w-4 mr-2" />
-          Refresh
+          Odśwież
         </Button>
       </div>
 
@@ -213,11 +213,11 @@ export default function SettingsPage() {
           <CardContent className="p-4">
             <div className="flex items-center gap-2 text-red-700">
               <Settings className="h-4 w-4" />
-              <span className="font-medium">Configuration Error:</span>
+              <span className="font-medium">Błąd Konfiguracji:</span>
               <span>{error}</span>
             </div>
             <p className="text-sm text-red-600 mt-1">
-              Using fallback configuration. Some features may be limited.
+              Używam konfiguracji awaryjnej. Niektóre funkcje mogą być ograniczone.
             </p>
           </CardContent>
         </Card>
@@ -229,7 +229,7 @@ export default function SettingsPage() {
           <CardContent className="p-4">
             <div className="flex items-center space-x-2">
               <Users className="h-5 w-5 text-blue-500" />
-              <span className="text-sm font-medium">Total Users</span>
+              <span className="text-sm font-medium">Wszyscy Użytkownicy</span>
             </div>
             <p className="text-2xl font-bold">{systemStats.totalUsers}</p>
           </CardContent>
@@ -239,7 +239,7 @@ export default function SettingsPage() {
           <CardContent className="p-4">
             <div className="flex items-center space-x-2">
               <Package className="h-5 w-5 text-green-500" />
-              <span className="text-sm font-medium">Total Orders</span>
+              <span className="text-sm font-medium">Wszystkie Zamówienia</span>
             </div>
             <p className="text-2xl font-bold">{systemStats.totalOrders}</p>
           </CardContent>
@@ -249,7 +249,7 @@ export default function SettingsPage() {
           <CardContent className="p-4">
             <div className="flex items-center space-x-2">
               <TrendingUp className="h-5 w-5 text-purple-500" />
-              <span className="text-sm font-medium">Categories</span>
+              <span className="text-sm font-medium">Kategorie</span>
             </div>
             <p className="text-2xl font-bold">{systemStats.totalCategories}</p>
           </CardContent>
@@ -259,7 +259,7 @@ export default function SettingsPage() {
           <CardContent className="p-4">
             <div className="flex items-center space-x-2">
               <FileText className="h-5 w-5 text-orange-500" />
-              <span className="text-sm font-medium">Upsells</span>
+              <span className="text-sm font-medium">Upselle</span>
             </div>
             <p className="text-2xl font-bold">{systemStats.totalUpsells}</p>
           </CardContent>
@@ -269,7 +269,7 @@ export default function SettingsPage() {
           <CardContent className="p-4">
             <div className="flex items-center space-x-2">
               <Bell className="h-5 w-5 text-red-500" />
-              <span className="text-sm font-medium">Notifications</span>
+              <span className="text-sm font-medium">Powiadomienia</span>
             </div>
             <p className="text-2xl font-bold">{systemStats.totalNotifications}</p>
           </CardContent>
@@ -281,14 +281,14 @@ export default function SettingsPage() {
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
             <Settings className="h-5 w-5" />
-            <span>Shop Configuration</span>
+            <span>Konfiguracja Sklepu</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Basic Settings */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium">Free Shipping Threshold</label>
+              <label className="text-sm font-medium">Próg Darmowej Dostawy</label>
               <Input
                 type="number"
                 value={config.freeShippingThreshold}
@@ -297,7 +297,7 @@ export default function SettingsPage() {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium">Quote Expiry Hours</label>
+              <label className="text-sm font-medium">Godziny Ważności Wyceny</label>
               <Input
                 type="number"
                 value={config.quoteExpiryHours}
@@ -316,7 +316,7 @@ export default function SettingsPage() {
                 onChange={(e) => updateConfig('couponsEnabled', e.target.checked)}
                 className="h-4 w-4"
               />
-              <label className="text-sm font-medium">Enable Coupons</label>
+              <label className="text-sm font-medium">Włącz Kupony</label>
             </div>
             <div className="flex items-center space-x-2">
               <input
@@ -325,7 +325,7 @@ export default function SettingsPage() {
                 onChange={(e) => updateConfig('allowPartialAcceptance', e.target.checked)}
                 className="h-4 w-4"
               />
-              <label className="text-sm font-medium">Allow Partial Acceptance</label>
+              <label className="text-sm font-medium">Zezwalaj na Częściową Akceptację</label>
             </div>
             <div className="flex items-center space-x-2">
               <input
@@ -334,7 +334,7 @@ export default function SettingsPage() {
                 onChange={(e) => updateConfig('requireSameEmailAtCheckout', e.target.checked)}
                 className="h-4 w-4"
               />
-              <label className="text-sm font-medium">Require Same Email at Checkout</label>
+              <label className="text-sm font-medium">Wymagaj Tego Samego Emaila przy Finalizacji</label>
             </div>
             <div className="flex items-center space-x-2">
               <input
@@ -343,14 +343,14 @@ export default function SettingsPage() {
                 onChange={(e) => updateConfig('requirePhone', e.target.checked)}
                 className="h-4 w-4"
               />
-              <label className="text-sm font-medium">Require Phone Number</label>
+              <label className="text-sm font-medium">Wymagaj Numeru Telefonu</label>
             </div>
           </div>
 
           {/* Save Button */}
           <Button onClick={handleSaveConfig} disabled={isSaving} className="w-full">
             <Save className="h-4 w-4 mr-2" />
-            {isSaving ? 'Saving...' : 'Save Configuration'}
+            {isSaving ? 'Zapisywanie...' : 'Zapisz Konfigurację'}
           </Button>
         </CardContent>
       </Card>
@@ -360,17 +360,17 @@ export default function SettingsPage() {
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
             <Shield className="h-5 w-5" />
-            <span>Configuration Information</span>
+            <span>Informacje o Konfiguracji</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="flex items-center space-x-2">
-              <span className="text-sm font-medium">Configuration ID:</span>
+              <span className="text-sm font-medium">ID Konfiguracji:</span>
               <Badge variant="outline">{config.id}</Badge>
             </div>
             <div className="flex items-center space-x-2">
-              <span className="text-sm font-medium">Last Updated:</span>
+              <span className="text-sm font-medium">Ostatnia Aktualizacja:</span>
               <Badge variant="outline">
                 {new Date(config.updatedAt).toLocaleDateString()}
               </Badge>
@@ -378,7 +378,7 @@ export default function SettingsPage() {
             <div className="flex items-center space-x-2">
               <span className="text-sm font-medium">Status:</span>
               <Badge variant={error ? 'destructive' : 'default'}>
-                {error ? 'Fallback Mode' : 'Database Connected'}
+                {error ? 'Tryb Awaryjny' : 'Baza Danych Połączona'}
               </Badge>
             </div>
           </div>

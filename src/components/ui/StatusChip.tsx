@@ -13,22 +13,22 @@ export interface StatusChipProps {
 
 const statusConfig = {
   PENDING: {
-    label: 'Pending',
+    label: 'Oczekujące',
     color: 'bg-warn/10 text-warn border-warn/20',
     icon: Clock,
   },
   VALUATED: {
-    label: 'Valuated',
+    label: 'Wycena',
     color: 'bg-success/10 text-success border-success/20',
     icon: CheckCircle,
   },
   PAID: {
-    label: 'Paid',
+    label: 'Opłacone',
     color: 'bg-primary/10 text-primary border-primary/20',
     icon: DollarSign,
   },
   REMOVED: {
-    label: 'Removed',
+    label: 'Usunięte',
     color: 'bg-danger/10 text-danger border-danger/20',
     icon: XCircle,
   },

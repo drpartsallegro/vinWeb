@@ -20,15 +20,15 @@ interface AdminSidebarProps {
 }
 
 const navigation = [
-  { name: 'Dashboard', href: '/admin', icon: Home, roles: ['ADMIN', 'STAFF'] },
-  { name: 'Orders', href: '/admin/orders', icon: ShoppingBag, roles: ['ADMIN', 'STAFF'] },
-  { name: 'Upsells', href: '/admin/upsells', icon: ShoppingBag, roles: ['ADMIN', 'STAFF'] },
-  { name: 'Analytics', href: '/admin/analytics', icon: BarChart3, roles: ['ADMIN'] },
-  { name: 'Users', href: '/admin/users', icon: Users, roles: ['ADMIN'] },
-  { name: 'Notifications', href: '/admin/notifications', icon: Bell, roles: ['ADMIN', 'STAFF'] },
-  { name: 'Reports', href: '/admin/reports', icon: FileText, roles: ['ADMIN'] },
-  { name: 'Security', href: '/admin/security', icon: Shield, roles: ['ADMIN'] },
-  { name: 'Settings', href: '/admin/settings', icon: Settings, roles: ['ADMIN'] },
+  { name: 'Panel Główny', href: '/admin', icon: Home, roles: ['ADMIN', 'STAFF'] },
+  { name: 'Zamówienia', href: '/admin/orders', icon: ShoppingBag, roles: ['ADMIN', 'STAFF'] },
+  { name: 'Upselle', href: '/admin/upsells', icon: ShoppingBag, roles: ['ADMIN', 'STAFF'] },
+  { name: 'Analizy', href: '/admin/analytics', icon: BarChart3, roles: ['ADMIN'] },
+  { name: 'Użytkownicy', href: '/admin/users', icon: Users, roles: ['ADMIN'] },
+  { name: 'Powiadomienia', href: '/admin/notifications', icon: Bell, roles: ['ADMIN', 'STAFF'] },
+  { name: 'Raporty', href: '/admin/reports', icon: FileText, roles: ['ADMIN'] },
+  { name: 'Bezpieczeństwo', href: '/admin/security', icon: Shield, roles: ['ADMIN'] },
+  { name: 'Ustawienia', href: '/admin/settings', icon: Settings, roles: ['ADMIN'] },
 ]
 
 export function AdminSidebar({ userRole }: AdminSidebarProps) {
@@ -46,8 +46,8 @@ export function AdminSidebar({ userRole }: AdminSidebarProps) {
           <Link href="/admin" className="flex items-center space-x-2">
             <div className="h-8 w-8 rounded-lg bg-gradient-primary"></div>
             <div>
-              <h1 className="text-lg font-bold text-gradient">PartsFlow</h1>
-              <p className="text-xs text-muted">Admin Panel</p>
+              <h1 className="text-lg font-bold text-gradient">Kup Tanie Części</h1>
+              <p className="text-xs text-muted">Panel Admin</p>
             </div>
           </Link>
         </div>
@@ -83,8 +83,8 @@ export function AdminSidebar({ userRole }: AdminSidebarProps) {
         {/* Footer */}
         <div className="border-t border-border p-4">
           <div className="text-xs text-muted">
-            <p>Role: <span className="font-medium text-text">{userRole}</span></p>
-            <p className="mt-1">PartsFlow Admin v1.0</p>
+            <p>Rola: <span className="font-medium text-text">{userRole}</span></p>
+            <p className="mt-1">Kup Tanie Części Admin v1.0</p>
           </div>
         </div>
       </div>

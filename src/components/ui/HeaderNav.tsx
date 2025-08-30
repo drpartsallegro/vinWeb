@@ -96,28 +96,28 @@ const HeaderNav = React.forwardRef<HTMLElement, HeaderNavProps>(
 
     const defaultUserMenuItems = [
       {
-        label: 'My Orders',
+        label: 'Moje Zamówienia',
         href: '/orders',
         icon: <Package className="w-4 h-4" />,
       },
       {
-        label: 'My Garage',
+        label: 'Mój Garaż',
         href: '/garage',
         icon: <Package className="w-4 h-4" />,
       },
       {
-        label: 'Profile',
+        label: 'Profil',
         href: '/profile',
         icon: <User className="w-4 h-4" />,
       },
       {
-        label: 'Settings',
+        label: 'Ustawienia',
         href: '/settings',
         icon: <Settings className="w-4 h-4" />,
       },
       { divider: true },
       {
-        label: 'Sign Out',
+        label: 'Wyloguj Się',
         onClick: handleSignOut,
         icon: <LogOut className="w-4 h-4" />,
       },
@@ -147,9 +147,9 @@ const HeaderNav = React.forwardRef<HTMLElement, HeaderNavProps>(
                     className="flex items-center space-x-2"
                   >
                     <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary-2 rounded-lg flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">V</span>
+                      <span className="text-white font-bold text-lg">K</span>
                     </div>
-                    <span className="text-xl font-bold text-text">VinWeb</span>
+                    <span className="text-xl font-bold text-text">Kup Tanie Części</span>
                   </motion.div>
                 </Link>
               )}
@@ -236,12 +236,12 @@ const HeaderNav = React.forwardRef<HTMLElement, HeaderNavProps>(
                         className="absolute right-0 mt-2 w-80 bg-surface border border-border rounded-xl shadow-float py-2 z-50"
                       >
                         <div className="px-4 py-3 border-b border-border">
-                          <h3 className="text-sm font-medium text-text">Notifications</h3>
+                          <h3 className="text-sm font-medium text-text">Powiadomienia</h3>
                         </div>
                         <div className="px-4 py-6 text-center">
                           <Bell className="w-8 h-8 text-muted mx-auto mb-2" />
-                          <p className="text-sm text-muted">No new notifications</p>
-                          <p className="text-xs text-muted mt-1">We'll notify you when there are updates</p>
+                          <p className="text-sm text-muted">Brak nowych powiadomień</p>
+                          <p className="text-xs text-muted mt-1">Powiadomimy Cię, gdy będą aktualizacje</p>
                         </div>
                       </motion.div>
                     )}
@@ -262,7 +262,7 @@ const HeaderNav = React.forwardRef<HTMLElement, HeaderNavProps>(
                       <User className="w-4 h-4 text-primary" />
                     </div>
                     <span className="hidden sm:block text-sm font-medium">
-                      {session.user?.name || 'User'}
+                      {session.user?.name || 'Użytkownik'}
                     </span>
                   </Button>
 
@@ -310,12 +310,12 @@ const HeaderNav = React.forwardRef<HTMLElement, HeaderNavProps>(
                 <div className="flex items-center space-x-2">
                   <Link href="/login">
                     <Button variant="ghost" size="sm">
-                      Sign In
+                      Zaloguj Się
                     </Button>
                   </Link>
                   <Link href="/wizard">
                     <Button size="sm">
-                      Get Started
+                      Rozpocznij
                     </Button>
                   </Link>
                 </div>

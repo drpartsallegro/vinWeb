@@ -26,15 +26,15 @@ export default function WizardPage() {
             className="text-center mb-12"
           >
             <h1 className="text-5xl font-bold text-text mb-6">
-              Get the Right Parts for Your Vehicle
+              Otrzymaj Odpowiednie Części do Swojego Pojazdu
             </h1>
             <p className="text-xl text-muted max-w-2xl mx-auto mb-8">
-              Our expert team will find the perfect parts for your vehicle. 
-              Just provide your VIN and tell us what you need.
+              Nasz ekspercki zespół znajdzie idealne części do Twojego pojazdu. 
+              Wystarczy, że podasz swój VIN i powiesz nam, czego potrzebujesz.
             </p>
             <Link href="/wizard/identify">
               <Button variant="default" size="lg" className="text-lg px-8 py-4 hover:bg-primary/90 hover:shadow-xl">
-                Start Your Request
+                Rozpocznij Zgłoszenie
                 <ArrowRightIcon className="ml-2 h-5 w-5" />
               </Button>
             </Link>
@@ -43,7 +43,7 @@ export default function WizardPage() {
           {/* How It Works */}
           <motion.div variants={motionVariants.quickIn} className="mb-16">
             <h2 className="text-3xl font-bold text-text text-center mb-12">
-              How It Works
+              Jak to Działa
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <motion.div variants={motionVariants.quickIn}>
@@ -52,11 +52,11 @@ export default function WizardPage() {
                     <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Car className="w-8 h-8 text-primary" />
                     </div>
-                    <CardTitle>1. Identify Your Vehicle</CardTitle>
+                    <CardTitle>1. Zidentyfikuj Swój Pojazd</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <CardDescription>
-                      Enter your VIN number and email address. We'll use this to find parts that fit your specific vehicle.
+                      Wprowadź swój numer VIN i adres email. Użyjemy tego, aby znaleźć części pasujące do Twojego konkretnego pojazdu.
                     </CardDescription>
                   </CardContent>
                 </Card>
@@ -68,11 +68,11 @@ export default function WizardPage() {
                     <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Wrench className="w-8 h-8 text-primary" />
                     </div>
-                    <CardTitle>2. Select Your Parts</CardTitle>
+                    <CardTitle>2. Wybierz Swoje Części</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <CardDescription>
-                      Choose from our comprehensive parts catalog. Add photos and notes to help us identify exactly what you need.
+                      Wybierz z naszego kompleksowego katalogu części. Dodaj zdjęcia i notatki, aby pomóc nam dokładnie zidentyfikować to, czego potrzebujesz.
                     </CardDescription>
                   </CardContent>
                 </Card>
@@ -84,11 +84,11 @@ export default function WizardPage() {
                     <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                       <CheckCircleIcon className="w-8 h-8 text-primary" />
                     </div>
-                    <CardTitle>3. Get Your Quote</CardTitle>
+                    <CardTitle>3. Otrzymaj Wycenę</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <CardDescription>
-                      We'll review your request and provide competitive pricing within 24-48 hours. No obligation to purchase.
+                      Przejrzymy Twoje zgłoszenie i zapewnimy konkurencyjne ceny w ciągu 24-48 godzin. Brak zobowiązań do zakupu.
                     </CardDescription>
                   </CardContent>
                 </Card>
@@ -99,7 +99,7 @@ export default function WizardPage() {
           {/* Benefits */}
           <motion.div variants={motionVariants.quickIn} className="mb-16">
             <h2 className="text-3xl font-bold text-text text-center mb-12">
-              Why Choose Us?
+              Dlaczego Nas Wybrać?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card>
@@ -108,12 +108,12 @@ export default function WizardPage() {
                     <div className="w-10 h-10 bg-success/20 rounded-lg flex items-center justify-center mr-3">
                       <CheckCircleIcon className="w-5 h-5 text-success" />
                     </div>
-                    Expert Parts Matching
+                    Eksperckie Dopasowanie Części
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription>
-                    Our team has years of experience in automotive parts. We'll find the right parts that fit your vehicle perfectly.
+                    Nasz zespół ma lata doświadczenia w częściach samochodowych. Znajdziemy odpowiednie części, które idealnie pasują do Twojego pojazdu.
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -124,12 +124,12 @@ export default function WizardPage() {
                     <div className="w-10 h-10 bg-success/20 rounded-lg flex items-center justify-center mr-3">
                       <CheckCircleIcon className="w-5 h-5 text-success" />
                     </div>
-                    Competitive Pricing
+                    Konkurencyjne Ceny
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription>
-                    We work with multiple suppliers to ensure you get the best prices on quality parts.
+                    Współpracujemy z wieloma dostawcami, aby zapewnić Ci najlepsze ceny za jakościowe części.
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -140,12 +140,12 @@ export default function WizardPage() {
                     <div className="w-10 h-10 bg-success/20 rounded-lg flex items-center justify-center mr-3">
                       <CheckCircleIcon className="w-5 h-5 text-success" />
                     </div>
-                    Fast Response
+                    Szybka Odpowiedź
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription>
-                    Get your quote within 24-48 hours. No waiting around for days to hear back.
+                    Otrzymaj wycenę w ciągu 24-48 godzin. Nie czekaj dni na odpowiedź.
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -156,12 +156,12 @@ export default function WizardPage() {
                     <div className="w-10 h-10 bg-success/20 rounded-lg flex items-center justify-center mr-3">
                       <CheckCircleIcon className="w-5 h-5 text-success" />
                     </div>
-                    No Obligation
+                    Brak Zobowiązań
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription>
-                    Get your quote with no pressure to buy. We're here to help you make informed decisions.
+                    Otrzymaj wycenę bez presji zakupu. Jesteśmy tutaj, aby pomóc Ci podejmować świadome decyzje.
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -173,21 +173,21 @@ export default function WizardPage() {
             <Card className="bg-primary/5 border-primary/20">
               <CardContent className="pt-8">
                 <h3 className="text-2xl font-bold text-text mb-4">
-                  Ready to Get Started?
+                  Gotowy do Rozpoczęcia?
                 </h3>
                 <p className="text-muted mb-6 max-w-lg mx-auto">
-                  Join thousands of satisfied customers who trust us for their automotive parts needs.
+                  Dołącz do tysięcy zadowolonych klientów, którzy nam ufają w swoich potrzebach motoryzacyjnych.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link href="/wizard/identify">
                     <Button variant="default" size="lg" className="text-lg px-6 py-4 hover:bg-primary/90 hover:shadow-xl">
-                      Start Your Request
+                      Rozpocznij Zgłoszenie
                       <ArrowRightIcon className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
                   <Link href="/orders">
                     <Button variant="outline" size="lg" className="text-lg px-6 py-4 border-2 border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-200">
-                      View My Orders
+                      Zobacz Moje Zamówienia
                     </Button>
                   </Link>
                 </div>

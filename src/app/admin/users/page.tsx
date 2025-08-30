@@ -80,14 +80,14 @@ export default function UsersPage() {
       if (roleFilter !== 'ALL') params.append('role', roleFilter)
 
       const response = await fetch(`/api/admin/users?${params}`)
-      if (!response.ok) throw new Error('Failed to fetch users')
+      if (!response.ok) throw new Error('Nie udało się pobrać użytkowników')
       
       const data = await response.json()
       setUsers(data.users)
       setTotalPages(data.totalPages)
       setRoleStats(data.roleStats)
     } catch (error) {
-      console.error('Error fetching users:', error)
+      console.error('Błąd podczas pobierania użytkowników:', error)
     } finally {
       setLoading(false)
     }
@@ -103,19 +103,19 @@ export default function UsersPage() {
         body: JSON.stringify(formData),
       })
 
-      if (!response.ok) throw new Error('Failed to create user')
+      if (!response.ok) throw new Error('Nie udało się utworzyć użytkownika')
 
       await fetchUsers()
       resetForm()
       setShowForm(false)
     } catch (error) {
-      console.error('Error creating user:', error)
-      alert('Failed to create user')
+      console.error('Błąd podczas tworzenia użytkownika:', error)
+      alert('Nie udało się utworzyć użytkownika')
     }
   }
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this user? This action cannot be undone.')) return
+    if (!confirm('Czy na pewno chcesz usunąć tego użytkownika? Tej akcji nie można cofnąć.')) return
 
     try {
       const response = await fetch(`/api/admin/users/${id}`, {
@@ -124,14 +124,14 @@ export default function UsersPage() {
 
       if (!response.ok) {
         const error = await response.json()
-        alert(error.error || 'Failed to delete user')
+        alert(error.error || 'Nie udało się usunąć użytkownika')
         return
       }
 
       await fetchUsers()
     } catch (error) {
-      console.error('Error deleting user:', error)
-      alert('Failed to delete user')
+      console.error('Błąd podczas usuwania użytkownika:', error)
+      alert('Nie udało się usunąć użytkownika')
     }
   }
 
@@ -184,8 +184,8 @@ export default function UsersPage() {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-text">Users</h1>
-            <p className="text-text/70 mt-1">Manage user accounts and permissions</p>
+            <h1 className="text-3xl font-bold text-text">Użytkownicy</h1>
+            <p className="text-text/70 mt-1">Zarządzaj kontami użytkowników i uprawnieniami</p>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -210,12 +210,12 @@ export default function UsersPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-text">Users</h1>
-          <p className="text-text/70 mt-1">Manage user accounts and permissions</p>
+          <h1 className="text-3xl font-bold text-text">Użytkownicy</h1>
+          <p className="text-text/70 mt-1">Zarządzaj kontami użytkowników i uprawnieniami</p>
         </div>
         <Button onClick={() => setShowForm(true)} className="flex items-center gap-2">
           <Plus className="h-5 w-5" />
-          Add User
+          Dodaj Użytkownika
         </Button>
       </div>
 
@@ -228,7 +228,7 @@ export default function UsersPage() {
                 <Users className="h-6 w-6 text-secondary" />
               </div>
               <div>
-                <p className="text-sm font-medium text-text/70">Regular Users</p>
+                <p className="text-sm font-medium text-text/70">Zwykli Użytkownicy</p>
                 <p className="text-2xl font-bold text-text">{roleStats.USER}</p>
               </div>
             </div>
@@ -242,7 +242,7 @@ export default function UsersPage() {
                 <User className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <p className="text-sm font-medium text-text/70">Staff Members</p>
+                <p className="text-sm font-medium text-text/70">Pracownicy</p>
                 <p className="text-2xl font-bold text-text">{roleStats.STAFF}</p>
               </div>
             </div>
@@ -256,7 +256,7 @@ export default function UsersPage() {
                 <Shield className="h-6 w-6 text-destructive" />
               </div>
               <div>
-                <p className="text-sm font-medium text-text/70">Administrators</p>
+                <p className="text-sm font-medium text-text/70">Administratorzy</p>
                 <p className="text-2xl font-bold text-text">{roleStats.ADMIN}</p>
               </div>
             </div>
@@ -269,7 +269,7 @@ export default function UsersPage() {
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-text/50" />
           <Input
-            placeholder="Search users..."
+            placeholder="Szukaj użytkowników..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
@@ -281,10 +281,10 @@ export default function UsersPage() {
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="ALL">All Roles</SelectItem>
-            <SelectItem value="USER">Users</SelectItem>
-            <SelectItem value="STAFF">Staff</SelectItem>
-            <SelectItem value="ADMIN">Admins</SelectItem>
+            <SelectItem value="ALL">Wszystkie Role</SelectItem>
+            <SelectItem value="USER">Użytkownicy</SelectItem>
+            <SelectItem value="STAFF">Pracownicy</SelectItem>
+            <SelectItem value="ADMIN">Administratorzy</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -293,18 +293,18 @@ export default function UsersPage() {
       {showForm && (
         <Card>
           <CardHeader>
-            <CardTitle>{editingUser ? 'Edit User' : 'Add New User'}</CardTitle>
+            <CardTitle>{editingUser ? 'Edytuj Użytkownika' : 'Dodaj Nowego Użytkownika'}</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-text mb-2">Name *</label>
+                  <label className="block text-sm font-medium text-text mb-2">Imię *</label>
                   <Input
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                     required
-                    placeholder="Full name"
+                    placeholder="Pełne imię"
                   />
                 </div>
                 <div>
@@ -314,27 +314,27 @@ export default function UsersPage() {
                     value={formData.email}
                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                     required
-                    placeholder="user@example.com"
+                    placeholder="użytkownik@przykład.com"
                   />
                 </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-text mb-2">Role *</label>
+                  <label className="block text-sm font-medium text-text mb-2">Rola *</label>
                   <Select value={formData.role} onValueChange={(value: 'USER' | 'STAFF' | 'ADMIN') => setFormData(prev => ({ ...prev, role: value }))}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="USER">User</SelectItem>
-                      <SelectItem value="STAFF">Staff</SelectItem>
+                      <SelectItem value="USER">Użytkownik</SelectItem>
+                      <SelectItem value="STAFF">Pracownik</SelectItem>
                       <SelectItem value="ADMIN">Administrator</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-text mb-2">Password *</label>
+                  <label className="block text-sm font-medium text-text mb-2">Hasło *</label>
                   <Input
                     type="password"
                     value={formData.password}
@@ -347,13 +347,13 @@ export default function UsersPage() {
 
               <div className="flex gap-2">
                 <Button type="submit">
-                  {editingUser ? 'Update User' : 'Create User'}
+                  {editingUser ? 'Zaktualizuj Użytkownika' : 'Utwórz Użytkownika'}
                 </Button>
                 <Button type="button" variant="outline" onClick={() => {
                   setShowForm(false)
                   resetForm()
                 }}>
-                  Cancel
+                  Anuluj
                 </Button>
               </div>
             </form>
@@ -372,7 +372,7 @@ export default function UsersPage() {
                     {getRoleIcon(user.role)}
                   </div>
                   <div>
-                    <h3 className="font-semibold text-text">{user.name || 'Unnamed User'}</h3>
+                    <h3 className="font-semibold text-text">{user.name || 'Bezimienny Użytkownik'}</h3>
                     <p className="text-sm text-text/70">{user.email}</p>
                   </div>
                 </div>
@@ -383,24 +383,24 @@ export default function UsersPage() {
               
               <div className="space-y-3 mb-4">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-text/70">Orders:</span>
+                  <span className="text-text/70">Zamówienia:</span>
                   <span className="font-medium text-text">{user._count.orderRequests}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-text/70">Comments:</span>
+                  <span className="text-text/70">Komentarze:</span>
                   <span className="font-medium text-text">{user._count.orderComments}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-text/70">Notifications:</span>
+                  <span className="text-text/70">Powiadomienia:</span>
                   <span className="font-medium text-text">{user._count.notifications}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-text/70">Joined:</span>
+                  <span className="text-text/70">Dołączył:</span>
                   <span className="font-medium text-text">{formatDate(user.createdAt)}</span>
                 </div>
                 {user.emailVerified && (
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-text/70">Verified:</span>
+                    <span className="text-text/70">Zweryfikowany:</span>
                     <span className="font-medium text-text">{formatDate(user.emailVerified)}</span>
                   </div>
                 )}
@@ -414,7 +414,7 @@ export default function UsersPage() {
                   className="flex-1"
                 >
                   <Pencil className="h-4 w-4 mr-1" />
-                  Edit
+                  Edytuj
                 </Button>
                 <Button
                   variant="outline"
@@ -439,17 +439,17 @@ export default function UsersPage() {
             onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
             disabled={currentPage === 1}
           >
-            Previous
+            Poprzednia
           </Button>
           <span className="text-sm text-text/70">
-            Page {currentPage} of {totalPages}
+            Strona {currentPage} z {totalPages}
           </span>
           <Button
             variant="outline"
             onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
             disabled={currentPage === totalPages}
           >
-            Next
+            Następna
           </Button>
         </div>
       )}
@@ -461,17 +461,17 @@ export default function UsersPage() {
             <div className="text-text/50 mb-4">
               <Users className="h-16 w-16 mx-auto" />
             </div>
-            <h3 className="text-lg font-semibold text-text mb-2">No users found</h3>
+            <h3 className="text-lg font-semibold text-text mb-2">Nie znaleziono użytkowników</h3>
             <p className="text-text/70 mb-4">
               {searchTerm || roleFilter !== 'ALL' 
-                ? 'Try adjusting your search or filters'
-                : 'Get started by creating your first user account'
+                ? 'Spróbuj dostosować wyszukiwanie lub filtry'
+                : 'Zacznij od utworzenia pierwszego konta użytkownika'
               }
             </p>
             {!searchTerm && roleFilter === 'ALL' && (
               <Button onClick={() => setShowForm(true)}>
                 <Plus className="h-5 w-5 mr-2" />
-                Add First User
+                Dodaj Pierwszego Użytkownika
               </Button>
             )}
           </CardContent>

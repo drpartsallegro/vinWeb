@@ -93,14 +93,14 @@ export default function NotificationsPage() {
       if (unreadOnly) params.append('unreadOnly', 'true')
 
       const response = await fetch(`/api/admin/notifications?${params}`)
-      if (!response.ok) throw new Error('Failed to fetch notifications')
+      if (!response.ok) throw new Error('Nie udało się pobrać powiadomień')
       
       const data = await response.json()
       setNotifications(data.notifications)
       setTotalPages(data.totalPages)
       setStats(data.stats)
     } catch (error) {
-      console.error('Error fetching notifications:', error)
+      console.error('Błąd podczas pobierania powiadomień:', error)
     } finally {
       setLoading(false)
     }
@@ -118,21 +118,21 @@ export default function NotificationsPage() {
 
       if (!response.ok) {
         const errorData = await response.json()
-        console.error('Notification creation failed:', errorData)
-        throw new Error(errorData.error || `Failed to create notification: ${response.status} ${response.statusText}`)
+        console.error('Tworzenie powiadomienia nie powiodło się:', errorData)
+        throw new Error(errorData.error || `Nie udało się utworzyć powiadomienia: ${response.status} ${response.statusText}`)
       }
 
       await fetchNotifications()
       resetForm()
       setShowForm(false)
     } catch (error) {
-      console.error('Error creating notification:', error)
-      alert(error instanceof Error ? error.message : 'Failed to create notification')
+      console.error('Błąd podczas tworzenia powiadomienia:', error)
+      alert(error instanceof Error ? error.message : 'Nie udało się utworzyć powiadomienia')
     }
   }
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this notification?')) return
+    if (!confirm('Czy na pewno chcesz usunąć to powiadomienie?')) return
 
     try {
       const response = await fetch(`/api/admin/notifications/${id}`, {
@@ -141,14 +141,14 @@ export default function NotificationsPage() {
 
       if (!response.ok) {
         const error = await response.json()
-        alert(error.error || 'Failed to delete notification')
+        alert(error.error || 'Nie udało się usunąć powiadomienia')
         return
       }
 
       await fetchNotifications()
     } catch (error) {
-      console.error('Error deleting notification:', error)
-      alert('Failed to delete notification')
+      console.error('Błąd podczas usuwania powiadomienia:', error)
+      alert('Nie udało się usunąć powiadomienia')
     }
   }
 
@@ -220,8 +220,8 @@ export default function NotificationsPage() {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-text">Notifications</h1>
-            <p className="text-text/70 mt-1">Manage system notifications and alerts</p>
+            <h1 className="text-3xl font-bold text-text">Powiadomienia</h1>
+            <p className="text-text/70 mt-1">Zarządzaj powiadomieniami systemowymi i alertami</p>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -246,12 +246,12 @@ export default function NotificationsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-text">Notifications</h1>
-          <p className="text-text/70 mt-1">Manage system notifications and alerts</p>
+          <h1 className="text-3xl font-bold text-text">Powiadomienia</h1>
+          <p className="text-text/70 mt-1">Zarządzaj powiadomieniami systemowymi i alertami</p>
         </div>
         <Button onClick={() => setShowForm(true)} className="flex items-center gap-2">
           <Plus className="h-5 w-5" />
-          Create Notification
+          Utwórz Powiadomienie
         </Button>
       </div>
 
@@ -283,7 +283,7 @@ export default function NotificationsPage() {
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-text/50" />
           <Input
-            placeholder="Search notifications..."
+            placeholder="Szukaj powiadomień..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
@@ -295,15 +295,15 @@ export default function NotificationsPage() {
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="ALL">All Types</SelectItem>
-            <SelectItem value="STATUS_CHANGED">Status Changed</SelectItem>
-            <SelectItem value="COMMENT_ADDED">Comment Added</SelectItem>
-            <SelectItem value="OFFER_ADDED">Offer Added</SelectItem>
-            <SelectItem value="OFFER_UPDATED">Offer Updated</SelectItem>
-            <SelectItem value="PAYMENT_SUCCEEDED">Payment Succeeded</SelectItem>
-            <SelectItem value="PAYMENT_FAILED">Payment Failed</SelectItem>
-            <SelectItem value="ORDER_REMOVED">Order Removed</SelectItem>
-            <SelectItem value="ORDER_RESTORED">Order Restored</SelectItem>
+            <SelectItem value="ALL">Wszystkie Typy</SelectItem>
+            <SelectItem value="STATUS_CHANGED">Status Zmieniony</SelectItem>
+            <SelectItem value="COMMENT_ADDED">Komentarz Dodany</SelectItem>
+            <SelectItem value="OFFER_ADDED">Oferta Dodana</SelectItem>
+            <SelectItem value="OFFER_UPDATED">Oferta Zaktualizowana</SelectItem>
+            <SelectItem value="PAYMENT_SUCCEEDED">Płatność Udana</SelectItem>
+            <SelectItem value="PAYMENT_FAILED">Płatność Nieudana</SelectItem>
+            <SelectItem value="ORDER_REMOVED">Zamówienie Usunięte</SelectItem>
+            <SelectItem value="ORDER_RESTORED">Zamówienie Przywrócone</SelectItem>
           </SelectContent>
         </Select>
         <Select value={audienceFilter} onValueChange={setAudienceFilter}>
@@ -312,11 +312,11 @@ export default function NotificationsPage() {
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="ALL">All Audiences</SelectItem>
-            <SelectItem value="USER">Users</SelectItem>
-            <SelectItem value="ADMIN">Admins</SelectItem>
-            <SelectItem value="STAFF">Staff</SelectItem>
-            <SelectItem value="GUEST">Guests</SelectItem>
+            <SelectItem value="ALL">Wszystkie Audytoria</SelectItem>
+            <SelectItem value="USER">Użytkownicy</SelectItem>
+            <SelectItem value="ADMIN">Administratorzy</SelectItem>
+            <SelectItem value="STAFF">Pracownicy</SelectItem>
+            <SelectItem value="GUEST">Goście</SelectItem>
           </SelectContent>
         </Select>
         <div className="flex items-center gap-2">
@@ -328,7 +328,7 @@ export default function NotificationsPage() {
             className="h-4 w-4 text-primary rounded border-2 border-border focus:ring-2 focus:ring-primary focus:ring-offset-2"
           />
           <label htmlFor="unreadOnly" className="text-sm font-medium text-text">
-            Unread only
+            Tylko nieprzeczytane
           </label>
         </div>
       </div>
@@ -337,35 +337,35 @@ export default function NotificationsPage() {
       {showForm && (
         <Card>
           <CardHeader>
-            <CardTitle>{editingNotification ? 'Edit Notification' : 'Create New Notification'}</CardTitle>
+            <CardTitle>{editingNotification ? 'Edytuj Powiadomienie' : 'Utwórz Nowe Powiadomienie'}</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-text mb-2">Title *</label>
+                  <label className="block text-sm font-medium text-text mb-2">Tytuł *</label>
                   <Input
                     value={formData.title}
                     onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
                     required
-                    placeholder="Notification title"
+                    placeholder="Tytuł powiadomienia"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-text mb-2">Type *</label>
+                  <label className="block text-sm font-medium text-text mb-2">Typ *</label>
                   <Select value={formData.type} onValueChange={(value: any) => setFormData(prev => ({ ...prev, type: value }))}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="STATUS_CHANGED">Status Changed</SelectItem>
-                      <SelectItem value="COMMENT_ADDED">Comment Added</SelectItem>
-                      <SelectItem value="OFFER_ADDED">Offer Added</SelectItem>
-                      <SelectItem value="OFFER_UPDATED">Offer Updated</SelectItem>
-                      <SelectItem value="PAYMENT_SUCCEEDED">Payment Succeeded</SelectItem>
-                      <SelectItem value="PAYMENT_FAILED">Payment Failed</SelectItem>
-                      <SelectItem value="ORDER_REMOVED">Order Removed</SelectItem>
-                      <SelectItem value="ORDER_RESTORED">Order Restored</SelectItem>
+                      <SelectItem value="STATUS_CHANGED">Status Zmieniony</SelectItem>
+                      <SelectItem value="COMMENT_ADDED">Komentarz Dodany</SelectItem>
+                      <SelectItem value="OFFER_ADDED">Oferta Dodana</SelectItem>
+                      <SelectItem value="OFFER_UPDATED">Oferta Zaktualizowana</SelectItem>
+                      <SelectItem value="PAYMENT_SUCCEEDED">Płatność Udana</SelectItem>
+                      <SelectItem value="PAYMENT_FAILED">Płatność Nieudana</SelectItem>
+                      <SelectItem value="ORDER_REMOVED">Zamówienie Usunięte</SelectItem>
+                      <SelectItem value="ORDER_RESTORED">Zamówienie Przywrócone</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -373,49 +373,49 @@ export default function NotificationsPage() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-text mb-2">Audience *</label>
+                  <label className="block text-sm font-medium text-text mb-2">Audytorium *</label>
                   <Select value={formData.audience} onValueChange={(value: any) => setFormData(prev => ({ ...prev, audience: value }))}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="USER">Users</SelectItem>
-                      <SelectItem value="ADMIN">Admins</SelectItem>
-                      <SelectItem value="STAFF">Staff</SelectItem>
-                      <SelectItem value="GUEST">Guests</SelectItem>
+                      <SelectItem value="USER">Użytkownicy</SelectItem>
+                      <SelectItem value="ADMIN">Administratorzy</SelectItem>
+                      <SelectItem value="STAFF">Pracownicy</SelectItem>
+                      <SelectItem value="GUEST">Goście</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-text mb-2">Order ID (Optional)</label>
+                  <label className="block text-sm font-medium text-text mb-2">ID Zamówienia (Opcjonalne)</label>
                   <Input
                     value={formData.orderRequestId}
                     onChange={(e) => setFormData(prev => ({ ...prev, orderRequestId: e.target.value }))}
-                    placeholder="Order short code"
+                    placeholder="Kod zamówienia"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-text mb-2">Message *</label>
+                <label className="block text-sm font-medium text-text mb-2">Wiadomość *</label>
                 <Textarea
                   value={formData.body}
                   onChange={(e) => setFormData(prev => ({ ...prev, body: e.target.value }))}
                   required
                   rows={4}
-                  placeholder="Notification message content"
+                  placeholder="Treść wiadomości powiadomienia"
                 />
               </div>
 
               <div className="flex gap-2">
                 <Button type="submit">
-                  {editingNotification ? 'Update Notification' : 'Send Notification'}
+                  {editingNotification ? 'Zaktualizuj Powiadomienie' : 'Wyślij Powiadomienie'}
                 </Button>
                 <Button type="button" variant="outline" onClick={() => {
                   setShowForm(false)
                   resetForm()
                 }}>
-                  Cancel
+                  Anuluj
                 </Button>
               </div>
             </form>
@@ -451,17 +451,17 @@ export default function NotificationsPage() {
               <div className="space-y-3 mb-4">
                 {notification.orderRequest && (
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-text/70">Order:</span>
+                    <span className="text-text/70">Zamówienie:</span>
                     <span className="font-medium text-text">{notification.orderRequest.shortCode}</span>
                   </div>
                 )}
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-text/70">Created:</span>
+                  <span className="text-text/70">Utworzone:</span>
                   <span className="font-medium text-text">{formatDate(notification.createdAt)}</span>
                 </div>
                 {notification.user && (
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-text/70">By:</span>
+                    <span className="text-text/70">Przez:</span>
                     <span className="font-medium text-text">{notification.user.name || notification.user.email}</span>
                   </div>
                 )}
@@ -475,7 +475,7 @@ export default function NotificationsPage() {
                   className="flex-1"
                 >
                   <Pencil className="h-4 w-4 mr-1" />
-                  Edit
+                  Edytuj
                 </Button>
                 <Button
                   variant="outline"
@@ -499,17 +499,17 @@ export default function NotificationsPage() {
             onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
             disabled={currentPage === 1}
           >
-            Previous
+            Poprzednia
           </Button>
           <span className="text-sm text-text/70">
-            Page {currentPage} of {totalPages}
+            Strona {currentPage} z {totalPages}
           </span>
           <Button
             variant="outline"
             onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
             disabled={currentPage === totalPages}
           >
-            Next
+            Następna
           </Button>
         </div>
       )}
@@ -521,17 +521,17 @@ export default function NotificationsPage() {
             <div className="text-text/50 mb-4">
               <Bell className="h-16 w-16 mx-auto" />
             </div>
-            <h3 className="text-lg font-semibold text-text mb-2">No notifications found</h3>
+            <h3 className="text-lg font-semibold text-text mb-2">Nie znaleziono powiadomień</h3>
             <p className="text-text/70 mb-4">
               {searchTerm || typeFilter !== 'ALL' || audienceFilter !== 'ALL' 
-                ? 'Try adjusting your search or filters'
-                : 'Get started by creating your first notification'
+                ? 'Spróbuj dostosować wyszukiwanie lub filtry'
+                : 'Zacznij od utworzenia pierwszego powiadomienia'
               }
             </p>
             {!searchTerm && typeFilter === 'ALL' && audienceFilter === 'ALL' && (
               <Button onClick={() => setShowForm(true)}>
                 <Plus className="h-5 w-5 mr-2" />
-                Create First Notification
+                Utwórz Pierwsze Powiadomienie
               </Button>
             )}
           </CardContent>

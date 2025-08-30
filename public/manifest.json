@@ -1,7 +1,7 @@
 {
-  "name": "PartsFlow - Premium Auto Parts",
-  "short_name": "PartsFlow",
-  "description": "Find and order premium auto parts with VIN-based precision matching",
+  "name": "Kup Tanie Części - Tanie Części Samochodowe",
+  "short_name": "Kup Tanie Części",
+  "description": "Znajdź i zamów tanie części samochodowe z precyzyjnym dopasowaniem opartym na VIN",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0B0D10",
@@ -67,21 +67,21 @@
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "PartsFlow Desktop View"
+      "label": "Kup Tanie Części - Widok Desktop"
     },
     {
       "src": "/screenshots/mobile.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "PartsFlow Mobile View"
+      "label": "Kup Tanie Części - Widok Mobilny"
     }
   ],
   "shortcuts": [
     {
-      "name": "Order Parts",
-      "short_name": "Order",
-      "description": "Start a new parts request",
+      "name": "Zamów Części",
+      "short_name": "Zamów",
+      "description": "Rozpocznij nowe zgłoszenie części",
       "url": "/wizard",
       "icons": [
         {
@@ -91,9 +91,9 @@
       ]
     },
     {
-      "name": "My Orders",
-      "short_name": "Orders",
-      "description": "View your order history",
+      "name": "Moje Zamówienia",
+      "short_name": "Zamówienia",
+      "description": "Zobacz historię zamówień",
       "url": "/orders",
       "icons": [
         {

@@ -18,14 +18,14 @@ import { useCart } from '@/contexts/CartContext'
 import { IdentifyNavigation } from '@/components/ui/WizardNavigation'
 
 const identifySchema = z.object({
-  vin: z.string().length(17, 'VIN must be exactly 17 characters'),
-  email: z.string().email('Please enter a valid email address').optional(),
+  vin: z.string().length(17, 'VIN musi mieć dokładnie 17 znaków'),
+  email: z.string().email('Proszę wprowadzić poprawny adres email').optional(),
 }).refine((data) => {
   // If user is not logged in, email is required
   // If user is logged in, only VIN is required
   return true; // We'll handle this in the component
 }, {
-  message: "Email is required for guest users"
+  message: "Email jest wymagany dla użytkowników gości"
 });
 
 type IdentifyForm = z.infer<typeof identifySchema>
@@ -85,7 +85,7 @@ export default function IdentifyPage() {
           setGarageVins(data.garageVins)
         }
       } catch (error) {
-        console.error('Error fetching garage VINs:', error)
+        console.error('Błąd podczas pobierania VIN z garażu:', error)
       } finally {
         setLoadingGarage(false)
       }
@@ -145,7 +145,7 @@ export default function IdentifyPage() {
       
       router.push('/wizard/parts')
     } catch (error) {
-      console.error('Error:', error)
+      console.error('Błąd:', error)
     }
   }
 
@@ -166,10 +166,10 @@ export default function IdentifyPage() {
             className="text-center mb-8"
           >
             <h1 className="text-4xl font-bold text-text mb-4">
-              Identify Your Vehicle
+              Zidentyfikuj Swój Pojazd
             </h1>
             <p className="text-lg text-muted max-w-xl mx-auto">
-              Enter your VIN number and email address to get started with your parts request
+              Wprowadź swój numer VIN i adres email, aby rozpocząć zgłoszenie części
             </p>
           </motion.div>
 
@@ -177,9 +177,9 @@ export default function IdentifyPage() {
           <motion.div variants={motionVariants.quickIn}>
             <Card className="max-w-2xl mx-auto">
               <CardHeader className="text-center">
-                <CardTitle className="text-2xl">Vehicle Information</CardTitle>
+                <CardTitle className="text-2xl">Informacje o Pojazdzie</CardTitle>
                 <CardDescription>
-                  We'll use this information to find the right parts for your vehicle
+                  Użyjemy tych informacji, aby znaleźć odpowiednie części do Twojego pojazdu
                 </CardDescription>
               </CardHeader>
               
@@ -189,13 +189,13 @@ export default function IdentifyPage() {
                   {session?.user?.id && (
                     <div className="relative vin-dropdown">
                       <label className="block text-sm font-medium text-text mb-2">
-                        Choose from Saved VINs
+                        Wybierz z Zapisanych VIN
                       </label>
                       {loadingGarage ? (
                         <div className="w-full px-4 py-3 bg-surface border border-border rounded-md">
                           <div className="flex items-center gap-2 text-muted">
                             <div className="animate-spin h-4 w-4 border-2 border-primary border-t-transparent rounded-full"></div>
-                            <span>Loading your saved VINs...</span>
+                            <span>Ładowanie zapisanych VIN...</span>
                           </div>
                         </div>
                       ) : garageVins.length > 0 ? (
@@ -208,7 +208,7 @@ export default function IdentifyPage() {
                           >
                             <span className="flex items-center gap-2">
                               <Car className="h-4 w-4" />
-                              {vinValue && garageVins.find(v => v.vin === vinValue)?.label || 'Select a saved VIN'}
+                              {vinValue && garageVins.find(v => v.vin === vinValue)?.label || 'Wybierz zapisany VIN'}
                             </span>
                             <ChevronDown className={`h-4 w-4 transition-transform ${showVinDropdown ? 'rotate-180' : ''}`} />
                           </Button>
@@ -231,12 +231,12 @@ export default function IdentifyPage() {
                         </div>
                       ) : (
                         <div className="w-full px-4 py-3 bg-surface-2/50 border border-border rounded-md text-center text-sm text-muted">
-                          No saved VINs in your garage yet
+                          Brak zapisanych VIN w Twoim garażu
                         </div>
                       )}
                       {garageVins.length > 0 && (
                         <p className="mt-2 text-xs text-muted">
-                          Or enter a new VIN below
+                          Lub wprowadź nowy VIN poniżej
                         </p>
                       )}
                     </div>
@@ -244,8 +244,8 @@ export default function IdentifyPage() {
 
                   <div>
                     <Input
-                      label="VIN Number"
-                      placeholder="Enter 17-character VIN"
+                      label="Numer VIN"
+                      placeholder="Wprowadź 17-znakowy VIN"
                       value={vinValue}
                       onChange={handleVinChange}
                       error={errors.vin?.message}
@@ -253,11 +253,11 @@ export default function IdentifyPage() {
                       className="font-mono text-lg"
                     />
                     <p className="mt-2 text-xs text-muted">
-                      Your VIN is usually found on the dashboard or driver's side door frame
+                      Twój VIN zazwyczaj znajduje się na desce rozdzielczej lub ramie drzwi kierowcy
                     </p>
                     {vinValue && (
                       <div className="mt-2 text-xs text-muted">
-                        Length: {vinValue.length}/17
+                        Długość: {vinValue.length}/17
                       </div>
                     )}
                   </div>
@@ -266,24 +266,24 @@ export default function IdentifyPage() {
                   {!session && (
                     <div>
                       <Input
-                        label="Email Address"
+                        label="Adres Email"
                         type="email"
-                        placeholder="your.email@example.com"
+                        placeholder="twoj.email@przykład.com"
                         {...register('email')}
                         error={errors.email?.message}
                       />
                       <p className="mt-2 text-xs text-muted">
-                        We'll send updates about your order to this email
+                        Wyślemy aktualizacje o Twoim zamówieniu na ten email
                       </p>
                     </div>
                   )}
 
                   <div className="bg-surface-2/50 rounded-lg p-4 text-sm text-muted">
-                    <h4 className="font-medium text-text mb-2">Why do we need this information?</h4>
+                    <h4 className="font-medium text-text mb-2">Dlaczego potrzebujemy tych informacji?</h4>
                     <ul className="space-y-1 text-xs">
-                      <li>• VIN helps us find parts that fit your specific vehicle</li>
-                      <li>• Email allows us to send you quotes and order updates</li>
-                      <li>• We never share your information with third parties</li>
+                      <li>• VIN pomaga nam znaleźć części pasujące do Twojego konkretnego pojazdu</li>
+                      <li>• Email pozwala nam wysyłać Ci wyceny i aktualizacje zamówień</li>
+                      <li>• Nigdy nie udostępniamy Twoich informacji osobom trzecim</li>
                     </ul>
                   </div>
 
@@ -292,7 +292,7 @@ export default function IdentifyPage() {
                       <Link href="/">
                         <Button variant="outline" size="lg" className="min-w-[140px] border-2 border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-200">
                           <ArrowLeftIcon className="mr-2 h-4 w-4" />
-                          Back to Home
+                          Powrót do Strony Głównej
                         </Button>
                       </Link>
                       
@@ -303,7 +303,7 @@ export default function IdentifyPage() {
                         size="lg"
                         className="min-w-[160px] bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-200"
                       >
-                        Continue to Parts Selection
+                        Kontynuuj do Wyboru Części
                         <ArrowRightIcon className="ml-2 h-4 w-4" />
                       </Button>
                     </div>
@@ -318,28 +318,28 @@ export default function IdentifyPage() {
             variants={motionVariants.quickIn}
             className="mt-8 text-center"
           >
-            <p className="text-sm text-muted mb-2">Need help finding your VIN?</p>
+            <p className="text-sm text-muted mb-2">Potrzebujesz pomocy w znalezieniu VIN?</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center mx-auto mb-3">
                   <span className="text-2xl">🚗</span>
                 </div>
-                <h4 className="text-sm font-medium text-text">Dashboard</h4>
-                <p className="text-xs text-muted">Lower left corner of dashboard, visible through windshield</p>
+                <h4 className="text-sm font-medium text-text">Deska Rozdzielcza</h4>
+                <p className="text-xs text-muted">Lewy dolny róg deski rozdzielczej, widoczny przez przednią szybę</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center mx-auto mb-3">
                   <span className="text-2xl">🚪</span>
                 </div>
-                <h4 className="text-sm font-medium text-text">Driver's Door</h4>
-                <p className="text-xs text-muted">On the door frame sticker when door is open</p>
+                <h4 className="text-sm font-medium text-text">Drzwi Kierowcy</h4>
+                <p className="text-xs text-muted">Na naklejce ramy drzwi, gdy drzwi są otwarte</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center mx-auto mb-3">
                   <span className="text-2xl">📋</span>
                 </div>
-                <h4 className="text-sm font-medium text-text">Documents</h4>
-                <p className="text-xs text-muted">Vehicle registration or insurance documents</p>
+                <h4 className="text-sm font-medium text-text">Dokumenty</h4>
+                <p className="text-xs text-muted">Rejestracja pojazdu lub dokumenty ubezpieczenia</p>
               </div>
             </div>
           </motion.div>

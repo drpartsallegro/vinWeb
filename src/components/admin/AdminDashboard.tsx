@@ -39,42 +39,42 @@ export function AdminDashboard({ data }: AdminDashboardProps) {
 
   const statCards = [
     {
-      title: 'Total Orders',
+      title: 'Wszystkie Zamówienia',
       value: stats.totalOrders,
       icon: ShoppingBag,
       color: 'text-text',
       bgColor: 'bg-surface2',
     },
     {
-      title: 'Pending Review',
+      title: 'Oczekujące na Przegląd',
       value: stats.pendingOrders,
       icon: Clock,
       color: 'text-warning',
       bgColor: 'bg-warning/10',
     },
     {
-      title: 'Ready to Order',
+      title: 'Gotowe do Zamówienia',
       value: stats.valuatedOrders,
       icon: DollarSign,
       color: 'text-primary',
       bgColor: 'bg-primary/10',
     },
     {
-      title: 'Completed',
+      title: 'Zakończone',
       value: stats.paidOrders,
       icon: CheckCircle,
       color: 'text-success',
       bgColor: 'bg-success/10',
     },
     {
-      title: 'Removed',
+      title: 'Usunięte',
       value: stats.removedOrders,
       icon: Trash2,
       color: 'text-muted',
       bgColor: 'bg-muted/10',
     },
     {
-      title: 'Total Users',
+      title: 'Wszyscy Użytkownicy',
       value: stats.totalUsers,
       icon: Users,
       color: 'text-accent',
@@ -86,9 +86,9 @@ export function AdminDashboard({ data }: AdminDashboardProps) {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-text">Dashboard</h1>
+        <h1 className="text-3xl font-bold text-text">Panel Administracyjny</h1>
         <p className="text-muted mt-1">
-          Overview of your PartsFlow admin panel
+          Przegląd panelu administracyjnego Kup Tanie Części
         </p>
       </div>
 
@@ -115,17 +115,17 @@ export function AdminDashboard({ data }: AdminDashboardProps) {
         {/* Recent Orders */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle>Recent Orders</CardTitle>
+            <CardTitle>Ostatnie Zamówienia</CardTitle>
             <Button variant="ghost" size="sm" asChild>
               <Link href="/admin/orders">
-                View All
+                Zobacz Wszystkie
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </CardHeader>
           <CardContent className="space-y-4">
             {recentOrders.length === 0 ? (
-              <p className="text-center text-muted py-8">No orders yet</p>
+              <p className="text-center text-muted py-8">Brak zamówień</p>
             ) : (
               recentOrders.map((order) => (
                 <div key={order.id} className="flex items-center justify-between p-3 bg-surface2/50 rounded-lg">
@@ -146,7 +146,7 @@ export function AdminDashboard({ data }: AdminDashboardProps) {
                       )}
                     </div>
                     <p className="text-sm text-muted mt-1">
-                      {order.user?.name || order.guestEmail} • {order.items.length} items
+                      {order.user?.name || order.guestEmail} • {order.items.length} elementów
                     </p>
                     <p className="text-xs text-muted">
                       VIN: {order.vin}
@@ -166,31 +166,31 @@ export function AdminDashboard({ data }: AdminDashboardProps) {
         {/* Recent Comments */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle>Recent Comments</CardTitle>
+            <CardTitle>Ostatnie Komentarze</CardTitle>
             <Button variant="ghost" size="sm" asChild>
               <Link href="/admin/notifications">
-                View All
+                Zobacz Wszystkie
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </CardHeader>
           <CardContent className="space-y-4">
             {recentComments.length === 0 ? (
-              <p className="text-center text-muted py-8">No comments yet</p>
+              <p className="text-center text-muted py-8">Brak komentarzy</p>
             ) : (
               recentComments.map((comment) => (
                 <div key={comment.id} className="p-3 bg-surface2/50 rounded-lg">
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-medium text-text">
-                        {comment.author?.name || 'Guest'}
+                        {comment.author?.name || 'Gość'}
                       </span>
                       <span className="text-xs text-muted">
                         {comment.authorRole.toLowerCase()}
                       </span>
                       {comment.isInternal && (
                         <span className="text-xs bg-warning/20 text-warning px-2 py-0.5 rounded">
-                          Internal
+                          Wewnętrzny
                         </span>
                       )}
                     </div>
@@ -217,7 +217,7 @@ export function AdminDashboard({ data }: AdminDashboardProps) {
       {/* Quick Actions */}
       <Card>
         <CardHeader>
-          <CardTitle>Quick Actions</CardTitle>
+          <CardTitle>Szybkie Akcje</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -225,8 +225,8 @@ export function AdminDashboard({ data }: AdminDashboardProps) {
               <Link href="/admin/orders?status=PENDING">
                 <div className="text-center">
                   <Clock className="h-8 w-8 mx-auto mb-2 text-warning" />
-                  <p className="font-medium">Review Pending</p>
-                  <p className="text-sm text-muted">{stats.pendingOrders} orders</p>
+                  <p className="font-medium">Przejrzyj Oczekujące</p>
+                  <p className="text-sm text-muted">{stats.pendingOrders} zamówień</p>
                 </div>
               </Link>
             </Button>
@@ -235,8 +235,8 @@ export function AdminDashboard({ data }: AdminDashboardProps) {
               <Link href="/admin/orders?status=VALUATED">
                 <div className="text-center">
                   <DollarSign className="h-8 w-8 mx-auto mb-2 text-primary" />
-                  <p className="font-medium">Manage Quotes</p>
-                  <p className="text-sm text-muted">{stats.valuatedOrders} orders</p>
+                  <p className="font-medium">Zarządzaj Wycenami</p>
+                  <p className="text-sm text-muted">{stats.valuatedOrders} zamówień</p>
                 </div>
               </Link>
             </Button>
@@ -245,8 +245,8 @@ export function AdminDashboard({ data }: AdminDashboardProps) {
               <Link href="/admin/upsells">
                 <div className="text-center">
                   <ShoppingBag className="h-8 w-8 mx-auto mb-2 text-accent" />
-                  <p className="font-medium">Manage Upsells</p>
-                  <p className="text-sm text-muted">Product catalog</p>
+                  <p className="font-medium">Zarządzaj Upsellami</p>
+                  <p className="text-sm text-muted">Katalog produktów</p>
                 </div>
               </Link>
             </Button>
@@ -255,8 +255,8 @@ export function AdminDashboard({ data }: AdminDashboardProps) {
               <Link href="/admin/settings">
                 <div className="text-center">
                   <Settings className="h-8 w-8 mx-auto mb-2 text-muted" />
-                  <p className="font-medium">Settings</p>
-                  <p className="text-sm text-muted">Configure system</p>
+                  <p className="font-medium">Ustawienia</p>
+                  <p className="text-sm text-muted">Konfiguruj system</p>
                 </div>
               </Link>
             </Button>
